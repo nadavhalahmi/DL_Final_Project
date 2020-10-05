@@ -1,0 +1,7 @@
+You could download the vgg16 checkpoint trained by CAT from https://drive.google.com/file/d/1NW8WxcF-XqRbrK2tVBtJlq1q9SHEwCNd/view
+
+To run a train, just do 
+bash train_adp.sh 
+
+To test the attack, change the model_dir to your model and run
+bash acc_under_attack.sh
