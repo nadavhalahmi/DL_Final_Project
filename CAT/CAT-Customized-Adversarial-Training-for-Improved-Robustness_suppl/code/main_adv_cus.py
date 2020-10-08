@@ -377,15 +377,20 @@ def test(epoch):
 
 
 if opt.data == 'cifar10':
-    epochs = [80, 60, 40, 20]
+    # epochs = [80, 60, 40, 20]
+    epochs = [3]
 elif opt.data == 'corrupt_cifar10':
-    epochs = [80, 60, 40, 20]
+    # epochs = [80, 60, 40, 20]
+    epochs = [3]
 elif opt.data == 'restricted_imagenet':
-    epochs = [30, 20, 20, 10]
+    # epochs = [30, 20, 20, 10]
+    epochs = [3]
 elif opt.data == 'tiny_imagenet':
     epochs = [30, 20, 20, 10]
+    epochs = [3]
 elif opt.data == 'stl10':
-    epochs = [60, 40, 20]
+    # epochs = [60, 40, 20]
+    epochs = [3]
 count = 0
 eps = torch.zeros(50000).cuda() 
 
