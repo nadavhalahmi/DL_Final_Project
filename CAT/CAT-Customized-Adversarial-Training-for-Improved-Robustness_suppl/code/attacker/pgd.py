@@ -304,7 +304,7 @@ def Linf_PGD_so(x_nat, y_true, net, steps, eps, imagenet=False, random=False, cw
 
 
 
-def Linf_PGD_so_cw(x_nat, y_true, net, steps, eps, one_hot, imagenet=False, random=False, cw=False):
+def Linf_PGD_so_cw(x_nat, y_true, net, steps, eps, one_hot, imagenet=False, random=False, cw=False, our=True):
     #mask = torch.LongTensor(x_nat.size(0)).cuda().zero_() 
     #eps_l = np.arange(0.005,0.03,0.005)  
     training = net.training
@@ -345,9 +345,13 @@ def Linf_PGD_so_cw(x_nat, y_true, net, steps, eps, one_hot, imagenet=False, rand
         optimizer.step()
         diff = x_adv - x_nat
         #diff.clamp_(-eps, eps)
-        diff = torch.max(diff,-torch.ones_like(diff)*eps.view(-1,1,1,1).expand_as(diff))
-        diff = torch.min(diff,torch.ones_like(diff)*eps.view(-1,1,1,1).expand_as(diff))
-        if imagenet:
+        if our is True:
+            diff = torch.max(diff,-torch.ones_like(diff)*eps.view(-1,1).expand_as(diff))
+            diff = torch.min(diff,torch.ones_like(diff)*eps.view(-1,1).expand_as(diff))
+        else:
+            diff = torch.max(diff,-torch.ones_like(diff)*eps.view(-1,1,1,1).expand_as(diff))
+            diff = torch.min(diff,torch.ones_like(diff)*eps.view(-1,1,1,1).expand_as(diff))
+        if imagenet:  # TODO: check this
             x_adv.detach().copy_(diff + x_nat)
             x_adv[:,0,:,:].data.clamp_(-0.485/0.229,(1-0.485)/0.229) 
             x_adv[:,1,:,:].data.clamp_(-0.456/0.224,(1-0.456)/0.224) 

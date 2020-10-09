@@ -270,7 +270,7 @@ def dirilabel(outputs,targets,eps):
 
 
 
-def train_soadp(epoch, perm, eps, cw=False):
+def train_soadp(epoch, perm, eps, cw=False, our=True):
     print('Epoch: %d' % epoch)
     net.train()
     train_loss = 0
@@ -280,17 +280,28 @@ def train_soadp(epoch, perm, eps, cw=False):
     zero = torch.tensor([0.0]).cuda()
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         index = perm[batch_idx*batch_size:(batch_idx+1)*batch_size]
-        inputs, targets = inputs.cuda(), targets.cuda()    
+        inputs, targets = inputs.cuda(), targets.cuda()
+        if our is True:
+          with torch.no_grad():
+            inputs = net.module.features(inputs).view(batch_size, -1)
         #print(targets.shape,index)
         #dis = eps[index]
         so_targets, one_hot = dirilabel(inputs,targets,eps[index])
         #so_targets = targets
-        adv_x = Linf_PGD_so_cw(inputs, so_targets, net, opt.steps, eps[index], one_hot, cw=cw)
+        if batch_idx > 389:
+          print(batch_idx, inputs.size())
+        if our:
+          adv_x = Linf_PGD_so_cw(inputs, so_targets, net.module.classifier, opt.steps, eps[index], one_hot, cw=cw, our=our)
+        else:
+          adv_x = Linf_PGD_so_cw(inputs, so_targets, net, opt.steps, eps[index], one_hot, cw=cw, our=our)
         #adv_x = L2_PGD(inputs, targets, net, opt.steps, opt.max_norm)
         #print(dis.shape)
         optimizer.zero_grad()
         eps[index] = distance(adv_x, inputs)
-        outputs = net(adv_x)
+        if our is True:
+          outputs = net.module.classifier(adv_x)
+        else:
+          outputs = net(adv_x)
         #loss = AdaptiveLoss(outputs, targets, dis)
         so_targets, one_hot = dirilabel(inputs,targets,eps[index])
         if cw:
@@ -378,9 +389,9 @@ def test(epoch):
 
 if opt.data == 'cifar10':
     # epochs = [80, 60, 40, 20]
-    epochs = [3]
+    epochs = [1]
 elif opt.data == 'corrupt_cifar10':
-    # epochs = [80, 60, 40, 20]
+    # epochs =   [80, 60, 40, 20]
     epochs = [3]
 elif opt.data == 'restricted_imagenet':
     # epochs = [30, 20, 20, 10]
@@ -399,7 +410,7 @@ for epoch in epochs:
     for it in range(epoch):
         train_perm = train_sampler.get_perm()
         #train_natrual(count)
-        train_soadp(count,train_perm,eps, cw=True)
+        train_soadp(count,train_perm,eps, cw=True, our=True)
         #train_cwadp(count,train_perm,eps, cw=True)
         #train_reg(count)
         test(count)
