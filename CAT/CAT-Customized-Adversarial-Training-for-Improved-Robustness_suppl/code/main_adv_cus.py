@@ -270,7 +270,7 @@ def dirilabel(outputs,targets,eps):
 
 
 
-def train_soadp(epoch, perm, eps, cw=False, our=True):
+def train_soadp(epoch, perm, eps, cw=False, our=False):
     print('Epoch: %d' % epoch)
     net.train()
     train_loss = 0
@@ -280,50 +280,53 @@ def train_soadp(epoch, perm, eps, cw=False, our=True):
     zero = torch.tensor([0.0]).cuda()
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         index = perm[batch_idx*batch_size:(batch_idx+1)*batch_size]
-        inputs, targets = inputs.cuda(), targets.cuda()
-        if our is True:
-          with torch.no_grad():
-            inputs = net.module.features(inputs).view(-1, 512)
-            inputs = inputs.cuda()
-        #print(targets.shape,index)
-        #dis = eps[index]
-        so_targets, one_hot = dirilabel(inputs,targets,eps[index])
-        #so_targets = targets
-        if our:
-          adv_x = Linf_PGD_so_cw(inputs, so_targets, net.module.classifier, opt.steps, eps[index], one_hot, cw=cw, our=our)
-        else:
-          adv_x = Linf_PGD_so_cw(inputs, so_targets, net, opt.steps, eps[index], one_hot, cw=cw, our=our)
-        #adv_x = L2_PGD(inputs, targets, net, opt.steps, opt.max_norm)
-        #print(dis.shape)
-        optimizer.zero_grad()
-        eps[index] = distance(adv_x, inputs)
-        if our is True:
-          outputs = net.module.classifier(adv_x)
-        else:
-          outputs = net(adv_x)
-        #loss = AdaptiveLoss(outputs, targets, dis)
-        so_targets, one_hot = dirilabel(inputs,targets,eps[index])
-        if cw:
-            real = torch.max(outputs*one_hot -(1-one_hot)*100000, dim=1)[0]
-            other = torch.max(torch.mul(outputs, (1-one_hot))-one_hot*100000, 1)[0]
-            loss1 = torch.max(other- real+10, zero)
-            loss1 = torch.sum(loss1 * eps[index])
-            log_prb = F.log_softmax(outputs,dim=1)
-            #print(log_prb.shape, y_true.shape)
-            loss2 = - (so_targets * log_prb).sum()/inputs.size(0)
-            loss = loss1 + loss2
-            #loss = torch.sum(loss1)
-        else:
-            log_prb = F.log_softmax(outputs,dim=1)
-            #print(log_prb.shape, y_true.shape)
-            loss = - (so_targets * log_prb).sum()/inputs.size(0)
-            #loss = test_criterion(outputs, targets)
-        loss.backward()
-        #print(loss1.item(),loss2.item())
-        optimizer.step()
-        pred = torch.max(outputs, dim=1)[1]
-        correct += torch.sum(pred.eq(targets)).item()
-        total += targets.numel()
+        for i in range(2):
+          if our is False and i==1:
+            break
+          inputs, targets = inputs.cuda(), targets.cuda()
+          if our is True and i==1:
+            with torch.no_grad():
+              inputs = net.module.features(inputs).view(-1, 512)
+              inputs = inputs.cuda()
+          #print(targets.shape,index)
+          #dis = eps[index]
+          so_targets, one_hot = dirilabel(inputs,targets,eps[index])
+          #so_targets = targets
+          if our and i==1:
+            adv_x = Linf_PGD_so_cw(inputs, so_targets, net.module.classifier, opt.steps, eps[index], one_hot, cw=cw, our=True)
+          else:
+            adv_x = Linf_PGD_so_cw(inputs, so_targets, net, opt.steps, eps[index], one_hot, cw=cw, our=False)
+          #adv_x = L2_PGD(inputs, targets, net, opt.steps, opt.max_norm)
+          #print(dis.shape)
+          optimizer.zero_grad()
+          eps[index] = distance(adv_x, inputs)
+          if our is True and i==1:
+            outputs = net.module.classifier(adv_x)
+          else:
+            outputs = net(adv_x)
+          #loss = AdaptiveLoss(outputs, targets, dis)
+          so_targets, one_hot = dirilabel(inputs,targets,eps[index])
+          if cw:
+              real = torch.max(outputs*one_hot -(1-one_hot)*100000, dim=1)[0]
+              other = torch.max(torch.mul(outputs, (1-one_hot))-one_hot*100000, 1)[0]
+              loss1 = torch.max(other- real+10, zero)
+              loss1 = torch.sum(loss1 * eps[index])
+              log_prb = F.log_softmax(outputs,dim=1)
+              #print(log_prb.shape, y_true.shape)
+              loss2 = - (so_targets * log_prb).sum()/inputs.size(0)
+              loss = loss1 + loss2
+              #loss = torch.sum(loss1)
+          else:
+              log_prb = F.log_softmax(outputs,dim=1)
+              #print(log_prb.shape, y_true.shape)
+              loss = - (so_targets * log_prb).sum()/inputs.size(0)
+              #loss = test_criterion(outputs, targets)
+          loss.backward()
+          #print(loss1.item(),loss2.item())
+          optimizer.step()
+          pred = torch.max(outputs, dim=1)[1]
+          correct += torch.sum(pred.eq(targets)).item()
+          total += targets.numel()
     print(torch.nonzero(eps).size(0),eps.shape,eps.sum())
     print(f'[TRAIN] Acc: {100.*correct/total:.3f}')
 
