@@ -283,13 +283,12 @@ def train_soadp(epoch, perm, eps, cw=False, our=True):
         inputs, targets = inputs.cuda(), targets.cuda()
         if our is True:
           with torch.no_grad():
-            inputs = net.module.features(inputs).view(batch_size, -1)
+            inputs = net.module.features(inputs).view(-1, 512)
+            inputs = inputs.cuda()
         #print(targets.shape,index)
         #dis = eps[index]
         so_targets, one_hot = dirilabel(inputs,targets,eps[index])
         #so_targets = targets
-        if batch_idx > 389:
-          print(batch_idx, inputs.size())
         if our:
           adv_x = Linf_PGD_so_cw(inputs, so_targets, net.module.classifier, opt.steps, eps[index], one_hot, cw=cw, our=our)
         else:
@@ -389,7 +388,7 @@ def test(epoch):
 
 if opt.data == 'cifar10':
     # epochs = [80, 60, 40, 20]
-    epochs = [1]
+    epochs = [20]
 elif opt.data == 'corrupt_cifar10':
     # epochs =   [80, 60, 40, 20]
     epochs = [3]
@@ -410,7 +409,7 @@ for epoch in epochs:
     for it in range(epoch):
         train_perm = train_sampler.get_perm()
         #train_natrual(count)
-        train_soadp(count,train_perm,eps, cw=True, our=True)
+        train_soadp(count,train_perm,eps, cw=True)
         #train_cwadp(count,train_perm,eps, cw=True)
         #train_reg(count)
         test(count)
