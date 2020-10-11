@@ -284,7 +284,7 @@ def train_soadp(epoch, perm, eps, cw=False, our=False):
           if our is False and i==1:
             break
           inputs, targets = inputs.cuda(), targets.cuda()
-          if our is True and i==1:
+          if our is True and i==1 and batch_idx % 5 == 0:
             with torch.no_grad():
               inputs = net.module.features(inputs).view(-1, 512)
               inputs = inputs.cuda()
@@ -292,7 +292,7 @@ def train_soadp(epoch, perm, eps, cw=False, our=False):
           #dis = eps[index]
           so_targets, one_hot = dirilabel(inputs,targets,eps[index])
           #so_targets = targets
-          if our and i==1:
+          if our and i==1 and batch_idx % 5 == 0:
             adv_x = Linf_PGD_so_cw(inputs, so_targets, net.module.classifier, opt.steps, eps[index], one_hot, cw=cw, our=True)
           else:
             adv_x = Linf_PGD_so_cw(inputs, so_targets, net, opt.steps, eps[index], one_hot, cw=cw, our=False)
@@ -300,7 +300,7 @@ def train_soadp(epoch, perm, eps, cw=False, our=False):
           #print(dis.shape)
           optimizer.zero_grad()
           eps[index] = distance(adv_x, inputs)
-          if our is True and i==1:
+          if our is True and i==1 and batch_idx % 5 == 0:
             outputs = net.module.classifier(adv_x)
           else:
             outputs = net(adv_x)
