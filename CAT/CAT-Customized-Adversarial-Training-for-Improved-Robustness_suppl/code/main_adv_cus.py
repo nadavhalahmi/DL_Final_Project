@@ -270,7 +270,7 @@ def dirilabel(outputs,targets,eps):
 
 
 
-def train_soadp(epoch, perm, eps, cw=False, our=False):
+def train_soadp(epoch, perm, eps, cw=False, our=True):
     print('Epoch: %d' % epoch)
     net.train()
     train_loss = 0
