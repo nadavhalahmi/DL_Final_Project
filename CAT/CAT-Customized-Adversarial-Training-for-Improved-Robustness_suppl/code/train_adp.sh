@@ -20,7 +20,7 @@ model=vgg
 #model=small_cnn
 model_out=./checkpoint/${data}_${model}_adv
 echo "model_out: " ${model_out}
-CUDA_VISIBLE_DEVICES=3 python ./main_adv_cus.py \
+CUDA_VISIBLE_DEVICES=3 python3 ./main_adv_cus.py \
                         --lr ${lr} \
                         --data ${data} \
                         --model ${model} \

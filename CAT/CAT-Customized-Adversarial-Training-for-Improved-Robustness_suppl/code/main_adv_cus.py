@@ -277,22 +277,25 @@ def train_soadp(epoch, perm, eps, cw=False, our=True):
     correct = 0
     total = 0 
     batch_size = 128
+    freq = 1 #how many times run our code per epoch
+    our_index = np.random.randint(0, len(trainloader)-1)
     zero = torch.tensor([0.0]).cuda()
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         index = perm[batch_idx*batch_size:(batch_idx+1)*batch_size]
         for i in range(2):
-          if our is False and i==1:
+          if (our is False or batch_idx != our_index) and i==1:
             break
           inputs, targets = inputs.cuda(), targets.cuda()
-          if our is True and i==1 and batch_idx % 5 == 0:
+          if our is True and i==1 and batch_idx == our_index:
             with torch.no_grad():
+              print(f'batch idx {batch_idx} our code')
               inputs = net.module.features(inputs).view(-1, 512)
               inputs = inputs.cuda()
           #print(targets.shape,index)
           #dis = eps[index]
           so_targets, one_hot = dirilabel(inputs,targets,eps[index])
           #so_targets = targets
-          if our and i==1 and batch_idx % 5 == 0:
+          if our and i==1 and batch_idx == our_index:
             adv_x = Linf_PGD_so_cw(inputs, so_targets, net.module.classifier, opt.steps, eps[index], one_hot, cw=cw, our=True)
           else:
             adv_x = Linf_PGD_so_cw(inputs, so_targets, net, opt.steps, eps[index], one_hot, cw=cw, our=False)
@@ -300,7 +303,7 @@ def train_soadp(epoch, perm, eps, cw=False, our=True):
           #print(dis.shape)
           optimizer.zero_grad()
           eps[index] = distance(adv_x, inputs)
-          if our is True and i==1 and batch_idx % 5 == 0:
+          if our is True and i==1 and batch_idx == our_index:
             outputs = net.module.classifier(adv_x)
           else:
             outputs = net(adv_x)
@@ -390,8 +393,8 @@ def test(epoch):
 
 
 if opt.data == 'cifar10':
-    # epochs = [80, 60, 40, 20]
-    epochs = [20]
+    epochs = [80, 60, 40, 20]
+    #epochs = [20]
 elif opt.data == 'corrupt_cifar10':
     # epochs =   [80, 60, 40, 20]
     epochs = [3]
