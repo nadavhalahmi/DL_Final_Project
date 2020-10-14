@@ -360,7 +360,7 @@ def hidden_mix_adv_train(inputs, targets, index, cw, mixup_alpha=0.1):
         inputs, targets = mixup_data(inputs, targets, mixup_alpha)
         inputs = inputs.cuda()
         targets = targets.cuda()
-    print("after mixup: " + str(inputs.size()) + " | " + str(targets.size()) + " | " + index)
+    print("after mixup: " + str(inputs.size()) + " | " + str(targets.size()) + " | " + str(index))
     so_targets, one_hot = dirilabel(inputs, targets, eps[index])
     adv_x = Linf_PGD_so_cw(inputs, targets, net.module.classifier, opt.steps, eps[index], one_hot, cw=cw,
                            our=True)
