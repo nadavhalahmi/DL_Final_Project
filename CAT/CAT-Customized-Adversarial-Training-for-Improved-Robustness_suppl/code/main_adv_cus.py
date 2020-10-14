@@ -296,16 +296,18 @@ def train_soadp(epoch, perm, eps, cw=False, hidden_train=True, mixup_alpha=0.1):
     batch_size = 128
     adv_on_mix = True  # adversarial example on mixed data in hidden state
     freq = 1  # how many times run our code per epoch
-    our_index = np.random.randint(0, len(trainloader) - 1)
-    zero = torch.tensor([0.0]).cuda()
+    hidden_index = np.random.randint(0, len(trainloader) - 1)
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         index = perm[batch_idx * batch_size:(batch_idx + 1) * batch_size]
         correct, total = noraml_adv_train(inputs, targets, index, cw)
         if hidden_train:
-            if batch_idx == our_index:
+            if batch_idx == hidden_index:
                 print(f'batch idx {batch_idx} our code')
                 correct, total = hidden_adv_train(inputs, targets, index, cw)
-        # if mixup_alpha != 0:
+        if mixup_alpha != 0:
+            if batch_idx == mix_index:
+                print(f'batch idx {batch_idx} mixup code')
+                correct, total = hidden_mix_adv_train(inputs, targets, index, cw)
 
     print(torch.nonzero(eps).size(0), eps.shape, eps.sum())
     print(f'[TRAIN] Acc: {100. * correct / total:.3f}')
@@ -353,10 +355,10 @@ def hidden_mix_adv_train(inputs, targets, index, cw, mixup_alpha=0.1):
     inputs, targets = inputs.cuda(), targets.cuda()
     with torch.no_grad():
         inputs = net.module.features(inputs).view(-1, 512)
+        inputs, mixed_targets = mixup_data(inputs, targets, mixup_alpha)
         inputs = inputs.cuda()
     so_targets, one_hot = dirilabel(inputs, targets, eps[index])
-    mixed_inputs, mixed_targets = mixup_data(inputs, targets, mixup_alpha)
-    adv_x = Linf_PGD_so_cw(mixed_inputs, mixed_targets, net.module.classifier, opt.steps, eps[index], one_hot, cw=cw,
+    adv_x = Linf_PGD_so_cw(inputs, mixed_targets, net.module.classifier, opt.steps, eps[index], one_hot, cw=cw,
                            our=True)
     optimizer.zero_grad()
     eps[index] = distance(adv_x, inputs)
