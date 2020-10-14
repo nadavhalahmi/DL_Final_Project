@@ -356,10 +356,13 @@ def hidden_mix_adv_train(inputs, targets, index, cw, mixup_alpha=0.1):
     inputs, targets = inputs.cuda(), targets.cuda()
     with torch.no_grad():
         inputs = net.module.features(inputs).view(-1, 512)
-        inputs, mixed_targets = mixup_data(inputs, targets, mixup_alpha)
+        print("before mixup: " + str(inputs.size()) + " | " + str(targets.size()))
+        inputs, targets = mixup_data(inputs, targets, mixup_alpha)
         inputs = inputs.cuda()
+        targets = targets.cuda()
+    print("after mixup: " + str(inputs.size()) + " | " + str(targets.size()))
     so_targets, one_hot = dirilabel(inputs, targets, eps[index])
-    adv_x = Linf_PGD_so_cw(inputs, mixed_targets, net.module.classifier, opt.steps, eps[index], one_hot, cw=cw,
+    adv_x = Linf_PGD_so_cw(inputs, targets, net.module.classifier, opt.steps, eps[index], one_hot, cw=cw,
                            our=True)
     optimizer.zero_grad()
     eps[index] = distance(adv_x, inputs)
