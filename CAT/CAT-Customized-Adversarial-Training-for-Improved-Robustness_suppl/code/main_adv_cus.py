@@ -348,7 +348,7 @@ def hidden_mix_adv_train(inputs, targets, index, cw, mixup_alpha=0.1):
     training with mixup and then adversarial example in hidden layer
     :param inputs: a batch of samples
     :param targets: predicted labels for the samples
-    :param index: the index of the sample in the batch to be taken for producing adversarial example
+    :param index: the index of the samples in the batch to be taken for producing adversarial example
     :param cw:
     :param mixup_alpha: determines the lambda for mixup
     :return: the correct and the total predictions
@@ -360,7 +360,7 @@ def hidden_mix_adv_train(inputs, targets, index, cw, mixup_alpha=0.1):
         inputs, targets = mixup_data(inputs, targets, mixup_alpha)
         inputs = inputs.cuda()
         targets = targets.cuda()
-    print("after mixup: " + str(inputs.size()) + " | " + str(targets.size()))
+    print("after mixup: " + str(inputs.size()) + " | " + str(targets.size()) + " | " + index)
     so_targets, one_hot = dirilabel(inputs, targets, eps[index])
     adv_x = Linf_PGD_so_cw(inputs, targets, net.module.classifier, opt.steps, eps[index], one_hot, cw=cw,
                            our=True)
