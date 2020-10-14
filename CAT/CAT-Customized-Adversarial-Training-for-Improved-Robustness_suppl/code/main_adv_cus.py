@@ -297,6 +297,7 @@ def train_soadp(epoch, perm, eps, cw=False, hidden_train=True, mixup_alpha=0.1):
     adv_on_mix = True  # adversarial example on mixed data in hidden state
     freq = 1  # how many times run our code per epoch
     hidden_index = np.random.randint(0, len(trainloader) - 1)
+    mix_index = np.random.randint(0, len(trainloader) - 1)
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         index = perm[batch_idx * batch_size:(batch_idx + 1) * batch_size]
         correct, total = noraml_adv_train(inputs, targets, index, cw)
