@@ -293,8 +293,6 @@ def train_soadp(epoch, perm, eps, cw=False, hidden_train=True, mixup_alpha=0.1):
     print('Epoch: %d' % epoch)
     net.train()
     train_loss = 0
-    correct = 0
-    total = 0
     batch_size = 128
     adv_on_mix = True  # adversarial example on mixed data in hidden state
     freq = 1  # how many times run our code per epoch
@@ -302,38 +300,21 @@ def train_soadp(epoch, perm, eps, cw=False, hidden_train=True, mixup_alpha=0.1):
     zero = torch.tensor([0.0]).cuda()
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         index = perm[batch_idx * batch_size:(batch_idx + 1) * batch_size]
-        correct, total = noraml_adv_train(inputs, targets, index, cw, zero, correct, total)
+        correct, total = noraml_adv_train(inputs, targets, index, cw)
         if hidden_train:
             if batch_idx == our_index:
                 print(f'batch idx {batch_idx} our code')
-                correct, total = hidden_adv_train(inputs, targets, index, cw, zero, correct, total)
-        #if mixup_alpha != 0:
+                correct, total = hidden_adv_train(inputs, targets, index, cw)
+        # if mixup_alpha != 0:
 
     print(torch.nonzero(eps).size(0), eps.shape, eps.sum())
     print(f'[TRAIN] Acc: {100. * correct / total:.3f}')
 
-def hidden_adv_train(inputs, targets, index, cw, zero, correct, total):
-    #if (our is False or batch_idx != our_index) and i == 1:
-    #    break
-    inputs, targets = inputs.cuda(), targets.cuda()
-    #if our is True and i == 1 and batch_idx == our_index:
-    with torch.no_grad():
-        inputs = net.module.features(inputs).view(-1, 512)
-        inputs = inputs.cuda()
-    # print(targets.shape,index)
-    # dis = eps[index]
-    so_targets, one_hot = dirilabel(inputs, targets, eps[index])
-    # so_targets = targets
-    #if our and i == 1 and batch_idx == our_index:
-    adv_x = Linf_PGD_so_cw(inputs, so_targets, net.module.classifier, opt.steps, eps[index], one_hot, cw=cw,
-                           our=True)
-    # adv_x = L2_PGD(inputs, targets, net, opt.steps, opt.max_norm)
-    # print(dis.shape)
-    optimizer.zero_grad()
-    eps[index] = distance(adv_x, inputs)
-    #if our is True and i == 1 and batch_idx == our_index:
-    outputs = net.module.classifier(adv_x)
-    # loss = AdaptiveLoss(outputs, targets, dis)
+
+def loss_and_num_corrects(inputs, targets, outputs, index, cw):
+    correct = 0
+    total = 0
+    zero = torch.tensor([0.0]).cuda()
     so_targets, one_hot = dirilabel(inputs, targets, eps[index])
     if cw:
         real = torch.max(outputs * one_hot - (1 - one_hot) * 100000, dim=1)[0]
@@ -358,42 +339,70 @@ def hidden_adv_train(inputs, targets, index, cw, zero, correct, total):
     total += targets.numel()
     return correct, total
 
-def noraml_adv_train(inputs, targets, index, cw, zero, correct, total):
+
+def hidden_mix_adv_train(inputs, targets, index, cw, mixup_alpha=0.1):
+    """
+    training with mixup and then adversarial example in hidden layer
+    :param inputs: a batch of samples
+    :param targets: predicted labels for the samples
+    :param index: the index of the sample in the batch to be taken for producing adversarial example
+    :param cw:
+    :param mixup_alpha: determines the lambda for mixup
+    :return: the correct and the total predictions
+    """
     inputs, targets = inputs.cuda(), targets.cuda()
-    # print(targets.shape,index)
-    # dis = eps[index]
+    with torch.no_grad():
+        inputs = net.module.features(inputs).view(-1, 512)
+        inputs = inputs.cuda()
     so_targets, one_hot = dirilabel(inputs, targets, eps[index])
-    # so_targets = targets
+    mixed_inputs, mixed_targets = mixup_data(inputs, targets, mixup_alpha)
+    adv_x = Linf_PGD_so_cw(mixed_inputs, mixed_targets, net.module.classifier, opt.steps, eps[index], one_hot, cw=cw,
+                           our=True)
+    optimizer.zero_grad()
+    eps[index] = distance(adv_x, inputs)
+    outputs = net.module.classifier(adv_x)
+    return loss_and_num_corrects(inputs, targets, outputs, index, cw)
+
+
+def hidden_adv_train(inputs, targets, index, cw):
+    """
+    training with adversarial example in hidden layer
+    :param inputs: a batch of samples
+    :param targets: predicted labels for the samples
+    :param index: the index of the sample in the batch to be taken for producing adversarial example
+    :param cw:
+    :return: the correct and the total predictions
+    """
+    inputs, targets = inputs.cuda(), targets.cuda()
+    with torch.no_grad():
+        inputs = net.module.features(inputs).view(-1, 512)
+        inputs = inputs.cuda()
+    so_targets, one_hot = dirilabel(inputs, targets, eps[index])
+    adv_x = Linf_PGD_so_cw(inputs, so_targets, net.module.classifier, opt.steps, eps[index], one_hot, cw=cw,
+                           our=True)
+    optimizer.zero_grad()
+    eps[index] = distance(adv_x, inputs)
+    outputs = net.module.classifier(adv_x)
+    return loss_and_num_corrects(inputs, targets, outputs, index, cw)
+
+
+def noraml_adv_train(inputs, targets, index, cw):
+    """
+    regular adversarial training
+    :param inputs: a batch of samples
+    :param targets: predicted labels for the samples
+    :param index: the index of the sample in the batch to be taken for producing adversarial example
+    :param cw:
+    :return: the correct and the total predictions
+    """
+    inputs, targets = inputs.cuda(), targets.cuda()
+    so_targets, one_hot = dirilabel(inputs, targets, eps[index])
     adv_x = Linf_PGD_so_cw(inputs, so_targets, net, opt.steps, eps[index], one_hot, cw=cw, our=False)
-    # adv_x = L2_PGD(inputs, targets, net, opt.steps, opt.max_norm)
-    # print(dis.shape)
     optimizer.zero_grad()
     eps[index] = distance(adv_x, inputs)
     outputs = net(adv_x)
-    # loss = AdaptiveLoss(outputs, targets, dis)
-    so_targets, one_hot = dirilabel(inputs, targets, eps[index])
-    if cw:
-        real = torch.max(outputs * one_hot - (1 - one_hot) * 100000, dim=1)[0]
-        other = torch.max(torch.mul(outputs, (1 - one_hot)) - one_hot * 100000, 1)[0]
-        loss1 = torch.max(other - real + 10, zero)
-        loss1 = torch.sum(loss1 * eps[index])
-        log_prb = F.log_softmax(outputs, dim=1)
-        # print(log_prb.shape, y_true.shape)
-        loss2 = - (so_targets * log_prb).sum() / inputs.size(0)
-        loss = loss1 + loss2
-        # loss = torch.sum(loss1)
-    else:
-        log_prb = F.log_softmax(outputs, dim=1)
-        # print(log_prb.shape, y_true.shape)
-        loss = - (so_targets * log_prb).sum() / inputs.size(0)
-        # loss = test_criterion(outputs, targets)
-    loss.backward()
-    # print(loss1.item(),loss2.item())
-    optimizer.step()
-    pred = torch.max(outputs, dim=1)[1]
-    correct += torch.sum(pred.eq(targets)).item()
-    total += targets.numel()
-    return correct, total
+    return loss_and_num_corrects(inputs, targets, outputs, index, cw)
+
 
 def test_attack(cw):
     correct = 0
