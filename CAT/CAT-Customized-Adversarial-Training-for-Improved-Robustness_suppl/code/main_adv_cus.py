@@ -317,11 +317,11 @@ def train_soadp(epoch, perm, eps, cw=False, hidden_train=True, mixup_alpha=0.1):
     print(f'[TRAIN] Acc: {100. * correct / total:.3f}')
 
 
-def loss_and_num_corrects(inputs, targets, outputs, index, cw):
+def loss_and_num_corrects(inputs, targets, outputs, index, cw, already_one_hot=False):
     correct = 0
     total = 0
     zero = torch.tensor([0.0]).cuda()
-    so_targets, one_hot = dirilabel(inputs, targets, eps[index])
+    so_targets, one_hot = dirilabel(inputs, targets, eps[index], already_one_hot)
     if cw:
         real = torch.max(outputs * one_hot - (1 - one_hot) * 100000, dim=1)[0]
         other = torch.max(torch.mul(outputs, (1 - one_hot)) - one_hot * 100000, 1)[0]
@@ -373,7 +373,7 @@ def hidden_mix_adv_train(inputs, targets, index, cw, mixup_alpha=0.1):
     optimizer.zero_grad()
     eps[index] = distance(adv_x, inputs)
     outputs = net.module.classifier(adv_x)
-    return loss_and_num_corrects(inputs, targets, outputs, index, cw)
+    return loss_and_num_corrects(inputs, targets, outputs, index, cw, already_one_hot=True)
 
 
 def hidden_adv_train(inputs, targets, index, cw):
