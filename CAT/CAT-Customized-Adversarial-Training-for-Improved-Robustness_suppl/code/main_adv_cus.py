@@ -274,13 +274,16 @@ def train_reg(epoch):
     print(f'[TRAIN] Acc: {100. * correct / total:.3f}')
 
 
-def dirilabel(outputs, targets, eps):
+def dirilabel(outputs, targets, eps, already_one_hot=False):
     batch_size, n_class = targets.size(0), 10
     # eps = 0.1
     eps *= 10
     eps = eps.view(-1, 1).cuda()
 
-    one_hot = torch.zeros((batch_size, n_class)).cuda().scatter(1, targets.view(-1, 1), 1)
+    if already_one_hot is False:
+        one_hot = torch.zeros((batch_size, n_class)).cuda().scatter(1, targets.view(-1, 1), 1)
+    else:
+        one_hot = targets
     ## here we assume uniform 
     alpha = torch.ones(n_class)
     distri = torch.distributions.Dirichlet(alpha)
@@ -357,11 +360,14 @@ def hidden_mix_adv_train(inputs, targets, index, cw, mixup_alpha=0.1):
     with torch.no_grad():
         inputs = net.module.features(inputs).view(-1, 512)
         print("before mixup: " + str(inputs.size()) + " | " + str(targets.size()))
+        #convert targets to one_hot
+        batch_size, n_class = targets.size(0), 10
+        targets = torch.zeros((batch_size, n_class)).cuda().scatter(1, targets.view(-1, 1), 1)
         inputs, targets = mixup_data(inputs, targets, mixup_alpha)
         inputs = inputs.cuda()
         targets = targets.cuda()
     print("after mixup: " + str(inputs.size()) + " | " + str(targets.size()))
-    so_targets, one_hot = dirilabel(inputs, targets, eps[index])
+    so_targets, one_hot = dirilabel(inputs, targets, eps[index], already_one_hot=True)
     adv_x = Linf_PGD_so_cw(inputs, targets, net.module.classifier, opt.steps, eps[index], one_hot, cw=cw,
                            our=True)
     optimizer.zero_grad()
