@@ -8,6 +8,7 @@ import torchvision
 import torchvision.transforms as transforms
 import torch.utils.data
 import numpy as np
+import random
 import torch.nn.functional as F
 import math
 import os
@@ -292,20 +293,23 @@ def dirilabel(outputs, targets, eps, already_one_hot=False):
     return one_hot_so, one_hot
 
 
-def train_soadp(epoch, perm, eps, cw=False, hidden_train=True, mixup_alpha=0.1):
+def train_soadp(epoch, perm, eps, cw=False, hidden_train=True, mixup_alpha=0.1, batches_per_epoch=1):
     print('Epoch: %d' % epoch)
     net.train()
     train_loss = 0
     batch_size = 128
     adv_on_mix = True  # adversarial example on mixed data in hidden state
-    freq = 1  # how many times run our code per epoch
-    hidden_index = np.random.randint(0, len(trainloader) - 1)
+    # the indices of the samples for producing adversarial examples
+    if batches_per_epoch == len(train_loader):
+        hidden_index = list(range(batches_per_epoch))
+    else:
+        hidden_index = list(random.sample(range(len(train_loader)), batches_per_epoch))
     mix_index = np.random.randint(0, len(trainloader) - 1)
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         index = perm[batch_idx * batch_size:(batch_idx + 1) * batch_size]
         correct, total = noraml_adv_train(inputs, targets, index, cw)
         if hidden_train:
-            if batch_idx == hidden_index:
+            if batch_idx in hidden_index:
                 print(f'batch idx {batch_idx} our code')
                 correct, total = hidden_adv_train(inputs, targets, index, cw)
         if mixup_alpha != 0:
@@ -360,7 +364,7 @@ def hidden_mix_adv_train(inputs, targets, index, cw, mixup_alpha=0.1):
     with torch.no_grad():
         inputs = net.module.features(inputs).view(-1, 512)
         print("before mixup: " + str(inputs.size()) + " | " + str(targets.size()))
-        #convert targets to one_hot
+        # convert targets to one_hot
         batch_size, n_class = targets.size(0), 10
         targets = torch.zeros((batch_size, n_class)).cuda().scatter(1, targets.view(-1, 1), 1)
         inputs, targets = mixup_data(inputs, targets, mixup_alpha)
@@ -492,15 +496,19 @@ elif opt.data == 'stl10':
 count = 0
 eps = torch.zeros(50000).cuda()
 
-for epoch in epochs:
-    optimizer = SGD(net.parameters(), lr=opt.lr, momentum=0.9, weight_decay=5.0e-4)
-    for it in range(epoch):
-        train_perm = train_sampler.get_perm()
-        # train_natrual(count)
-        train_soadp(count, train_perm, eps, cw=True)
-        # train_cwadp(count,train_perm,eps, cw=True)
-        # train_reg(count)
-        test(count)
-        count += 1
-        train_sampler.resample()
-    opt.lr /= 10
+batches_per_epoch_list = [1, 2, 3, 4, 5, 10, 20, 30, 50, 100, 128]
+
+for batches_per_epoch in batches_per_epoch_list:
+    print(f"now taking {batches_per_epoch} batches in each epoch")
+    for epoch in epochs:
+        optimizer = SGD(net.parameters(), lr=opt.lr, momentum=0.9, weight_decay=5.0e-4)
+        for it in range(epoch):
+            train_perm = train_sampler.get_perm()
+            # train_natrual(count)
+            train_soadp(count, train_perm, eps, cw=True, mixup_alpha=0, batches_per_epoch=batches_per_epoch)
+            # train_cwadp(count,train_perm,eps, cw=True)
+            # train_reg(count)
+            test(count)
+            count += 1
+            train_sampler.resample()
+        opt.lr /= 10
