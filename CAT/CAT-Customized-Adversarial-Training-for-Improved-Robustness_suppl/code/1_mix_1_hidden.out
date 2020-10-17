@@ -1,0 +1,377 @@
+model_out:  ./checkpoint/cifar10_vgg_adv
+==> Preparing data..
+Files already downloaded and verified
+Training data will be SHUFFLED
+Files already downloaded and verified
+Epoch: 0
+batch idx 64 our code
+batch idx 225 mixup code
+2007 torch.Size([50000]) tensor(52.1894, device='cuda:0')
+[TRAIN] Acc: 17.500
+[TEST] Acc: 10.110
+Epoch: 1
+batch idx 51 mixup code
+batch idx 307 our code
+526 torch.Size([50000]) tensor(1.7400, device='cuda:0')
+[TRAIN] Acc: 13.750
+[TEST] Acc: 11.040
+Epoch: 2
+batch idx 65 our code
+batch idx 299 mixup code
+633 torch.Size([50000]) tensor(3.2075, device='cuda:0')
+[TRAIN] Acc: 12.500
+[TEST] Acc: 11.230
+Epoch: 3
+batch idx 33 mixup code
+batch idx 197 our code
+769 torch.Size([50000]) tensor(5.0401, device='cuda:0')
+[TRAIN] Acc: 13.750
+[TEST] Acc: 11.230
+Epoch: 4
+batch idx 284 mixup code
+batch idx 360 our code
+877 torch.Size([50000]) tensor(7.0501, device='cuda:0')
+[TRAIN] Acc: 10.000
+[TEST] Acc: 11.400
+Epoch: 5
+batch idx 155 mixup code
+batch idx 279 our code
+912 torch.Size([50000]) tensor(9.5610, device='cuda:0')
+[TRAIN] Acc: 15.000
+[TEST] Acc: 11.450
+Epoch: 6
+batch idx 196 mixup code
+batch idx 323 our code
+963 torch.Size([50000]) tensor(13.7377, device='cuda:0')
+[TRAIN] Acc: 8.750
+[TEST] Acc: 11.450
+Epoch: 7
+batch idx 282 our code
+batch idx 374 mixup code
+1003 torch.Size([50000]) tensor(12.2891, device='cuda:0')
+[TRAIN] Acc: 8.750
+[TEST] Acc: 11.480
+Epoch: 8
+batch idx 203 our code
+batch idx 343 mixup code
+1077 torch.Size([50000]) tensor(14.4327, device='cuda:0')
+[TRAIN] Acc: 11.250
+[TEST] Acc: 11.990
+Epoch: 9
+batch idx 33 our code
+batch idx 209 mixup code
+1108 torch.Size([50000]) tensor(23.2528, device='cuda:0')
+[TRAIN] Acc: 10.000
+[TEST] Acc: 12.070
+Epoch: 10
+batch idx 300 mixup code
+batch idx 348 our code
+1150 torch.Size([50000]) tensor(26.9484, device='cuda:0')
+[TRAIN] Acc: 12.500
+[TEST] Acc: 10.000
+Epoch: 11
+batch idx 78 our code
+batch idx 344 mixup code
+1180 torch.Size([50000]) tensor(21.4552, device='cuda:0')
+[TRAIN] Acc: 5.000
+[TEST] Acc: 12.000
+Epoch: 12
+batch idx 60 our code
+batch idx 310 mixup code
+1244 torch.Size([50000]) tensor(27.9495, device='cuda:0')
+[TRAIN] Acc: 8.750
+[TEST] Acc: 12.100
+Epoch: 13
+batch idx 0 mixup code
+batch idx 282 our code
+1252 torch.Size([50000]) tensor(29.9972, device='cuda:0')
+[TRAIN] Acc: 10.000
+[TEST] Acc: 12.120
+Epoch: 14
+batch idx 89 our code
+batch idx 294 mixup code
+1238 torch.Size([50000]) tensor(26.5116, device='cuda:0')
+[TRAIN] Acc: 8.750
+[TEST] Acc: 12.100
+Epoch: 15
+batch idx 242 our code
+batch idx 365 mixup code
+1488 torch.Size([50000]) tensor(32.9635, device='cuda:0')
+[TRAIN] Acc: 17.500
+[TEST] Acc: 10.000
+Epoch: 16
+batch idx 103 mixup code
+batch idx 374 our code
+1445 torch.Size([50000]) tensor(30.2106, device='cuda:0')
+[TRAIN] Acc: 13.750
+[TEST] Acc: 10.960
+Epoch: 17
+batch idx 5 mixup code
+batch idx 165 our code
+1705 torch.Size([50000]) tensor(33.3943, device='cuda:0')
+[TRAIN] Acc: 16.250
+[TEST] Acc: 12.000
+Epoch: 18
+batch idx 380 our code
+batch idx 389 mixup code
+2803 torch.Size([50000]) tensor(34.0151, device='cuda:0')
+[TRAIN] Acc: 13.750
+[TEST] Acc: 12.310
+Epoch: 19
+batch idx 172 mixup code
+batch idx 270 our code
+4036 torch.Size([50000]) tensor(38.6561, device='cuda:0')
+[TRAIN] Acc: 15.000
+[TEST] Acc: 16.880
+Epoch: 20
+batch idx 105 our code
+batch idx 186 mixup code
+5767 torch.Size([50000]) tensor(45.7397, device='cuda:0')
+[TRAIN] Acc: 11.250
+[TEST] Acc: 14.920
+Epoch: 21
+batch idx 287 mixup code
+batch idx 332 our code
+5645 torch.Size([50000]) tensor(69.1081, device='cuda:0')
+[TRAIN] Acc: 15.000
+[TEST] Acc: 10.000
+Epoch: 22
+batch idx 101 mixup code
+batch idx 370 our code
+4043 torch.Size([50000]) tensor(48.4486, device='cuda:0')
+[TRAIN] Acc: 10.000
+[TEST] Acc: 15.240
+Epoch: 23
+batch idx 93 our code
+batch idx 373 mixup code
+4561 torch.Size([50000]) tensor(52.4195, device='cuda:0')
+[TRAIN] Acc: 13.750
+[TEST] Acc: 18.460
+Epoch: 24
+batch idx 54 mixup code
+batch idx 61 our code
+4075 torch.Size([50000]) tensor(63.1875, device='cuda:0')
+[TRAIN] Acc: 16.250
+[TEST] Acc: 19.120
+Epoch: 25
+batch idx 66 mixup code
+batch idx 304 our code
+4055 torch.Size([50000]) tensor(66.6267, device='cuda:0')
+[TRAIN] Acc: 17.500
+[TEST] Acc: 18.310
+Epoch: 26
+batch idx 113 mixup code
+batch idx 305 our code
+4138 torch.Size([50000]) tensor(66.8468, device='cuda:0')
+[TRAIN] Acc: 25.000
+[TEST] Acc: 19.120
+Epoch: 27
+batch idx 183 mixup code
+batch idx 350 our code
+4319 torch.Size([50000]) tensor(65.1735, device='cuda:0')
+[TRAIN] Acc: 23.750
+[TEST] Acc: 18.220
+Epoch: 28
+batch idx 21 mixup code
+batch idx 24 our code
+4443 torch.Size([50000]) tensor(62.9031, device='cuda:0')
+[TRAIN] Acc: 11.250
+[TEST] Acc: 19.360
+Epoch: 29
+batch idx 310 mixup code
+batch idx 326 our code
+4828 torch.Size([50000]) tensor(74.8071, device='cuda:0')
+[TRAIN] Acc: 20.000
+[TEST] Acc: 18.300
+Epoch: 30
+batch idx 21 mixup code
+batch idx 157 our code
+4141 torch.Size([50000]) tensor(73.8781, device='cuda:0')
+[TRAIN] Acc: 21.250
+[TEST] Acc: 18.510
+Epoch: 31
+batch idx 118 mixup code
+batch idx 168 our code
+4410 torch.Size([50000]) tensor(78.3851, device='cuda:0')
+[TRAIN] Acc: 18.750
+[TEST] Acc: 18.500
+Epoch: 32
+batch idx 79 our code
+batch idx 379 mixup code
+4628 torch.Size([50000]) tensor(76.8933, device='cuda:0')
+[TRAIN] Acc: 18.750
+[TEST] Acc: 18.450
+Epoch: 33
+batch idx 52 mixup code
+batch idx 180 our code
+4823 torch.Size([50000]) tensor(82.2198, device='cuda:0')
+[TRAIN] Acc: 16.250
+[TEST] Acc: 18.650
+Epoch: 34
+batch idx 198 our code
+batch idx 283 mixup code
+5163 torch.Size([50000]) tensor(91.5310, device='cuda:0')
+[TRAIN] Acc: 20.000
+[TEST] Acc: 19.140
+Epoch: 35
+batch idx 1 mixup code
+batch idx 244 our code
+4735 torch.Size([50000]) tensor(91.8497, device='cuda:0')
+[TRAIN] Acc: 17.500
+[TEST] Acc: 19.320
+Epoch: 36
+batch idx 84 our code
+batch idx 200 mixup code
+4733 torch.Size([50000]) tensor(94.5293, device='cuda:0')
+[TRAIN] Acc: 17.500
+[TEST] Acc: 19.310
+Epoch: 37
+batch idx 120 mixup code
+batch idx 124 our code
+4714 torch.Size([50000]) tensor(101.4578, device='cuda:0')
+[TRAIN] Acc: 20.000
+[TEST] Acc: 17.990
+Epoch: 38
+batch idx 19 mixup code
+batch idx 32 our code
+4821 torch.Size([50000]) tensor(97.9196, device='cuda:0')
+[TRAIN] Acc: 16.250
+[TEST] Acc: 19.400
+Epoch: 39
+batch idx 7 mixup code
+batch idx 85 our code
+4944 torch.Size([50000]) tensor(98.0947, device='cuda:0')
+[TRAIN] Acc: 11.250
+[TEST] Acc: 18.880
+Epoch: 40
+batch idx 35 our code
+batch idx 332 mixup code
+5042 torch.Size([50000]) tensor(99.3562, device='cuda:0')
+[TRAIN] Acc: 17.500
+[TEST] Acc: 19.250
+Epoch: 41
+batch idx 35 mixup code
+batch idx 230 our code
+4976 torch.Size([50000]) tensor(104.2249, device='cuda:0')
+[TRAIN] Acc: 16.250
+[TEST] Acc: 19.120
+Epoch: 42
+batch idx 37 mixup code
+batch idx 41 our code
+5218 torch.Size([50000]) tensor(110.2110, device='cuda:0')
+[TRAIN] Acc: 20.000
+[TEST] Acc: 19.040
+Epoch: 43
+batch idx 349 mixup code
+batch idx 351 our code
+5507 torch.Size([50000]) tensor(107.0520, device='cuda:0')
+[TRAIN] Acc: 15.000
+[TEST] Acc: 19.240
+Epoch: 44
+batch idx 47 mixup code
+batch idx 57 our code
+4769 torch.Size([50000]) tensor(111.4093, device='cuda:0')
+[TRAIN] Acc: 13.750
+[TEST] Acc: 18.110
+Epoch: 45
+batch idx 107 mixup code
+batch idx 378 our code
+4852 torch.Size([50000]) tensor(106.8002, device='cuda:0')
+[TRAIN] Acc: 12.500
+[TEST] Acc: 19.360
+Epoch: 46
+batch idx 50 mixup code
+batch idx 298 our code
+4789 torch.Size([50000]) tensor(105.1070, device='cuda:0')
+[TRAIN] Acc: 25.000
+[TEST] Acc: 19.560
+Epoch: 47
+batch idx 167 our code
+batch idx 200 mixup code
+5336 torch.Size([50000]) tensor(110.1897, device='cuda:0')
+[TRAIN] Acc: 27.500
+[TEST] Acc: 19.350
+Epoch: 48
+batch idx 30 mixup code
+batch idx 328 our code
+5400 torch.Size([50000]) tensor(116.1209, device='cuda:0')
+[TRAIN] Acc: 20.000
+[TEST] Acc: 19.490
+Epoch: 49
+batch idx 200 our code
+batch idx 347 mixup code
+5203 torch.Size([50000]) tensor(113.9539, device='cuda:0')
+[TRAIN] Acc: 25.000
+[TEST] Acc: 19.490
+Epoch: 50
+batch idx 157 mixup code
+batch idx 265 our code
+5011 torch.Size([50000]) tensor(104.8785, device='cuda:0')
+[TRAIN] Acc: 22.500
+[TEST] Acc: 19.530
+Epoch: 51
+batch idx 22 our code
+batch idx 57 mixup code
+5117 torch.Size([50000]) tensor(113.5497, device='cuda:0')
+[TRAIN] Acc: 22.500
+[TEST] Acc: 19.040
+Epoch: 52
+batch idx 144 our code
+batch idx 331 mixup code
+5241 torch.Size([50000]) tensor(116.5072, device='cuda:0')
+[TRAIN] Acc: 18.750
+[TEST] Acc: 19.260
+Epoch: 53
+batch idx 67 mixup code
+batch idx 304 our code
+4889 torch.Size([50000]) tensor(111.3468, device='cuda:0')
+[TRAIN] Acc: 15.000
+[TEST] Acc: 19.480
+Epoch: 54
+batch idx 290 our code
+batch idx 333 mixup code
+5251 torch.Size([50000]) tensor(109.6507, device='cuda:0')
+[TRAIN] Acc: 16.250
+[TEST] Acc: 19.390
+Epoch: 55
+batch idx 199 our code
+batch idx 329 mixup code
+4995 torch.Size([50000]) tensor(111.7281, device='cuda:0')
+[TRAIN] Acc: 13.750
+[TEST] Acc: 18.520
+Epoch: 56
+batch idx 232 our code
+batch idx 307 mixup code
+5181 torch.Size([50000]) tensor(113.3277, device='cuda:0')
+[TRAIN] Acc: 13.750
+[TEST] Acc: 18.800
+Epoch: 57
+batch idx 168 mixup code
+batch idx 373 our code
+4927 torch.Size([50000]) tensor(111.1394, device='cuda:0')
+[TRAIN] Acc: 28.750
+[TEST] Acc: 19.600
+Epoch: 58
+batch idx 58 mixup code
+batch idx 360 our code
+4894 torch.Size([50000]) tensor(111.3813, device='cuda:0')
+[TRAIN] Acc: 26.250
+[TEST] Acc: 19.460
+Epoch: 59
+batch idx 67 our code
+batch idx 375 mixup code
+5360 torch.Size([50000]) tensor(105.3622, device='cuda:0')
+[TRAIN] Acc: 20.000
+[TEST] Acc: 19.560
+Epoch: 60
+batch idx 37 our code
+batch idx 289 mixup code
+5107 torch.Size([50000]) tensor(113.8148, device='cuda:0')
+[TRAIN] Acc: 13.750
+[TEST] Acc: 19.620
+Epoch: 61
+batch idx 176 our code
+batch idx 346 mixup code
+5375 torch.Size([50000]) tensor(117.4719, device='cuda:0')
+[TRAIN] Acc: 16.250
+[TEST] Acc: 19.460
