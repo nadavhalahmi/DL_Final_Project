@@ -300,6 +300,7 @@ def train_soadp(epoch, perm, eps, cw=False, hidden_train=True, mixup_alpha=0.1, 
     batch_size = 128
     adv_on_mix = True  # adversarial example on mixed data in hidden state
     # the indices of the samples for producing adversarial examples
+
     if batches_per_epoch == len(trainloader):
         hidden_index = list(range(batches_per_epoch))
     else:
@@ -365,6 +366,11 @@ def hidden_mix_adv_train(inputs, targets, index, cw, mixup_alpha=0.1):
     inputs, targets = inputs.cuda(), targets.cuda()
     with torch.no_grad():
         inputs = net.module.features(inputs).view(-1, 512)
+<<<<<<< HEAD
+=======
+        print("before mixup: " + str(inputs.size()) + " | " + str(targets.size()))
+        # convert targets to one_hot
+>>>>>>> 471f814175078ac0534adf6d853f3c0e9ee63895
         batch_size, n_class = targets.size(0), 10
         targets = torch.zeros((batch_size, n_class)).cuda().scatter(1, targets.view(-1, 1), 1)
         inputs, targets = mixup_data(inputs, targets, mixup_alpha)
@@ -505,7 +511,11 @@ for batches_per_epoch in batches_per_epoch_list:
         for it in range(epoch):
             train_perm = train_sampler.get_perm()
             # train_natrual(count)
+<<<<<<< HEAD
             train_soadp(count, train_perm, eps, cw=True, mixup_alpha=0.1, batches_per_epoch=batches_per_epoch)
+=======
+            train_soadp(count, train_perm, eps, cw=True, mixup_alpha=0, batches_per_epoch=batches_per_epoch)
+>>>>>>> 471f814175078ac0534adf6d853f3c0e9ee63895
             # train_cwadp(count,train_perm,eps, cw=True)
             # train_reg(count)
             test(count)
