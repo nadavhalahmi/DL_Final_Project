@@ -308,9 +308,9 @@ def train_soadp(epoch, perm, eps, cw=False, mixup_in_epoch=0, hidden_in_epoch=0,
         if batch_idx in hidden_index:
             print(f'batch idx {batch_idx} hidden train')
             correct, total = hidden_adv_train(inputs, targets, index, cw)
-        if batch_idx == mix_index:
+        if batch_idx in mix_index:
             print(f'batch idx {batch_idx} mixup train')
-            correct, total = hidden_mix_adv_train(inputs, targets, index, cw)
+            correct, total = hidden_mix_adv_train(inputs, targets, index, cw, mixup_alpha)
 
     print(torch.nonzero(eps).size(0), eps.shape, eps.sum())
     print(f'[TRAIN] Acc: {100. * correct / total:.3f}')
@@ -347,7 +347,7 @@ def loss_and_num_corrects(inputs, targets, outputs, index, cw, already_one_hot=F
     return correct, total
 
 
-def hidden_mix_adv_train(inputs, targets, index, cw, mixup_alpha=0.1):
+def hidden_mix_adv_train(inputs, targets, index, cw, mixup_alpha=1.0):
     """
     training with mixup and then adversarial example in hidden layer
     :param inputs: a batch of samples
