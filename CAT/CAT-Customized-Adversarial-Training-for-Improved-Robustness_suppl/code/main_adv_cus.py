@@ -293,30 +293,24 @@ def dirilabel(outputs, targets, eps, already_one_hot=False):
     return one_hot_so, one_hot
 
 
-def train_soadp(epoch, perm, eps, cw=False, hidden_train=True, mixup_alpha=0.1, batches_per_epoch=1):
+def train_soadp(epoch, perm, eps, cw=False, mixup_in_epoch=0, hidden_in_epoch=0, mixup_alpha=0):
     print('Epoch: %d' % epoch)
     net.train()
     train_loss = 0
     batch_size = 128
-    adv_on_mix = True  # adversarial example on mixed data in hidden state
     # the indices of the samples for producing adversarial examples
 
-    if batches_per_epoch == len(trainloader):
-        hidden_index = list(range(batches_per_epoch))
-    else:
-        hidden_index = list(random.sample(range(len(trainloader)), batches_per_epoch))
-    mix_index = np.random.randint(0, len(trainloader) - 1)
+    hidden_index = list(random.sample(range(len(trainloader)), hidden_in_epoch))
+    mix_index = list(random.sample(range(len(trainloader)), mixup_in_epoch))
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         index = perm[batch_idx * batch_size:(batch_idx + 1) * batch_size]
         correct, total = noraml_adv_train(inputs, targets, index, cw)
-        if hidden_train:
-            if batch_idx in hidden_index:
-                print(f'batch idx {batch_idx} our code')
-                correct, total = hidden_adv_train(inputs, targets, index, cw)
-        if mixup_alpha != 0:
-            if batch_idx == mix_index:
-                print(f'batch idx {batch_idx} mixup code')
-                correct, total = hidden_mix_adv_train(inputs, targets, index, cw)
+        if batch_idx in hidden_index:
+            print(f'batch idx {batch_idx} hidden train')
+            correct, total = hidden_adv_train(inputs, targets, index, cw)
+        if batch_idx == mix_index:
+            print(f'batch idx {batch_idx} mixup train')
+            correct, total = hidden_mix_adv_train(inputs, targets, index, cw)
 
     print(torch.nonzero(eps).size(0), eps.shape, eps.sum())
     print(f'[TRAIN] Acc: {100. * correct / total:.3f}')
@@ -431,8 +425,8 @@ def test_attack(cw):
     for it, (x, y) in enumerate(testloader):
         x, y = x.cuda(), y.cuda()
         x_adv = Linf_PGD(x, y, net, 5, eps, cw=cw)
-        #pred = torch.max(net(x_adv)[0], dim=1)[1] TODO: unnote this according to whatsapp group
-        pred = torch.max(net(x_adv), dim=1)[1] #TODO: note this according to whatsapp group
+        # pred = torch.max(net(x_adv)[0], dim=1)[1] TODO: unnote this according to whatsapp group
+        pred = torch.max(net(x_adv), dim=1)[1]  # TODO: note this according to whatsapp group
         correct += torch.sum(pred.eq(y)).item()
         total += y.numel()
         batch += 1
@@ -481,36 +475,35 @@ def test(epoch):
 
 
 if opt.data == 'cifar10':
-    epochs = [80]
-    # epochs = [20]
+    epochs = [80, 60, 40, 20]
 elif opt.data == 'corrupt_cifar10':
-    # epochs =   [80, 60, 40, 20]
-    epochs = [3]
+    epochs = [80, 60, 40, 20]
 elif opt.data == 'restricted_imagenet':
-    # epochs = [30, 20, 20, 10]
-    epochs = [3]
+    epochs = [30, 20, 20, 10]
 elif opt.data == 'tiny_imagenet':
     epochs = [30, 20, 20, 10]
-    epochs = [3]
 elif opt.data == 'stl10':
-    # epochs = [60, 40, 20]
-    epochs = [3]
+    epochs = [60, 40, 20]
 count = 0
 eps = torch.zeros(50000).cuda()
 
-batches_per_epoch_list = [1, 2, 3, 4, 5, 10, 20, 30, 50, 100, 128]
 
-for batches_per_epoch in batches_per_epoch_list:
-    print(f"now taking {batches_per_epoch} batches in each epoch")
-    for epoch in epochs:
-        optimizer = SGD(net.parameters(), lr=opt.lr, momentum=0.9, weight_decay=5.0e-4)
-        for it in range(epoch):
-            train_perm = train_sampler.get_perm()
-            # train_natrual(count)
-            train_soadp(count, train_perm, eps, cw=True, mixup_alpha=0.1, batches_per_epoch=batches_per_epoch)
-            # train_cwadp(count,train_perm,eps, cw=True)
-            # train_reg(count)
-            test(count)
-            count += 1
-            train_sampler.resample()
-        opt.lr /= 10
+def our_experiment(count, train_perm, eps, cw, mixup_in_epoch, hidden_in_epoch, mixup_alpha):
+    train_soadp(count, train_perm, eps, cw=cw, mixup_alpha=mixup_alpha,
+                mixup_in_epoch=mixup_in_epoch, hidden_in_epoch=hidden_in_epoch)
+
+
+for epoch in epochs:
+    optimizer = SGD(net.parameters(), lr=opt.lr, momentum=0.9, weight_decay=5.0e-4)
+    for it in range(epoch):
+        train_perm = train_sampler.get_perm()
+        # train_natrual(count)
+        # change mixup_in_epoch, hidden_in_epoch and mixup_alpha to control experiments
+        our_experiment(count, train_perm, eps, cw=True, mixup_in_epoch=1, hidden_in_epoch=1, mixup_alpha=1.0)
+        # train_soadp(count, train_perm, eps, cw=True, mixup_alpha=1.0)
+        # train_cwadp(count,train_perm,eps, cw=True)
+        # train_reg(count)
+        test(count)
+        count += 1
+        train_sampler.resample()
+    opt.lr /= 10
