@@ -493,13 +493,21 @@ def our_experiment(count, train_perm, eps, cw, mixup_in_epoch, hidden_in_epoch, 
                 mixup_in_epoch=mixup_in_epoch, hidden_in_epoch=hidden_in_epoch)
 
 
+mixup_in_epoch = 1
+hidden_in_epoch = 1
+mixup_alpha = 1.0
+
+print(f'running experiment with mixup_in_epoch={mixup_in_epoch}, '
+      f'hidden_in_epoch={hidden_in_epoch}, mixup_alpha={mixup_alpha}')
+
 for epoch in epochs:
     optimizer = SGD(net.parameters(), lr=opt.lr, momentum=0.9, weight_decay=5.0e-4)
     for it in range(epoch):
         train_perm = train_sampler.get_perm()
         # train_natrual(count)
         # change mixup_in_epoch, hidden_in_epoch and mixup_alpha to control experiments
-        our_experiment(count, train_perm, eps, cw=True, mixup_in_epoch=1, hidden_in_epoch=1, mixup_alpha=1.0)
+        our_experiment(count, train_perm, eps, cw=True, mixup_in_epoch=mixup_in_epoch,
+                       hidden_in_epoch=hidden_in_epoch, mixup_alpha=mixup_alpha)
         # train_soadp(count, train_perm, eps, cw=True, mixup_alpha=1.0)
         # train_cwadp(count,train_perm,eps, cw=True)
         # train_reg(count)
