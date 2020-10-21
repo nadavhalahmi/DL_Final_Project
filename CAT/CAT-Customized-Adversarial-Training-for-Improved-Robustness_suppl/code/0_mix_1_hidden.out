@@ -1,0 +1,1145 @@
+model_out:  ./checkpoint/cifar10_vgg_adv
+==> Preparing data..
+Files already downloaded and verified
+Training data will be SHUFFLED
+Files already downloaded and verified
+running experiment with mixup_in_epoch=0, hidden_in_epoch=1, mixup_alpha=1.0
+Epoch: 0
+batch idx 225 hidden train
+8590 torch.Size([50000]) tensor(144.3358, device='cuda:0')
+[TRAIN] Acc: 11.250
+[TEST] Acc: 10.990
+Epoch: 1
+batch idx 305 hidden train
+1956 torch.Size([50000]) tensor(6.3116, device='cuda:0')
+[TRAIN] Acc: 8.750
+[TEST] Acc: 11.760
+Epoch: 2
+batch idx 107 hidden train
+1860 torch.Size([50000]) tensor(7.2701, device='cuda:0')
+[TRAIN] Acc: 16.250
+[TEST] Acc: 12.010
+Epoch: 3
+batch idx 132 hidden train
+3914 torch.Size([50000]) tensor(15.1702, device='cuda:0')
+[TRAIN] Acc: 8.750
+[TEST] Acc: 12.510
+Epoch: 4
+batch idx 57 hidden train
+5976 torch.Size([50000]) tensor(29.6378, device='cuda:0')
+[TRAIN] Acc: 13.750
+[TEST] Acc: 12.470
+Epoch: 5
+batch idx 281 hidden train
+6111 torch.Size([50000]) tensor(44.0905, device='cuda:0')
+[TRAIN] Acc: 11.250
+[TEST] Acc: 12.980
+Epoch: 6
+batch idx 197 hidden train
+6187 torch.Size([50000]) tensor(58.2856, device='cuda:0')
+[TRAIN] Acc: 15.000
+[TEST] Acc: 13.130
+Epoch: 7
+batch idx 278 hidden train
+6285 torch.Size([50000]) tensor(72.3308, device='cuda:0')
+[TRAIN] Acc: 16.250
+[TEST] Acc: 13.100
+Epoch: 8
+batch idx 172 hidden train
+6327 torch.Size([50000]) tensor(86.2709, device='cuda:0')
+[TRAIN] Acc: 11.250
+[TEST] Acc: 13.350
+Epoch: 9
+batch idx 305 hidden train
+6353 torch.Size([50000]) tensor(99.6436, device='cuda:0')
+[TRAIN] Acc: 13.750
+[TEST] Acc: 13.620
+Epoch: 10
+batch idx 112 hidden train
+6503 torch.Size([50000]) tensor(113.6562, device='cuda:0')
+[TRAIN] Acc: 12.500
+[TEST] Acc: 13.610
+Epoch: 11
+batch idx 32 hidden train
+6523 torch.Size([50000]) tensor(127.6959, device='cuda:0')
+[TRAIN] Acc: 11.250
+[TEST] Acc: 14.150
+Epoch: 12
+batch idx 255 hidden train
+6567 torch.Size([50000]) tensor(143.9632, device='cuda:0')
+[TRAIN] Acc: 11.250
+[TEST] Acc: 13.930
+Epoch: 13
+batch idx 41 hidden train
+6614 torch.Size([50000]) tensor(152.5806, device='cuda:0')
+[TRAIN] Acc: 10.000
+[TEST] Acc: 14.090
+Epoch: 14
+batch idx 228 hidden train
+8137 torch.Size([50000]) tensor(168.1382, device='cuda:0')
+[TRAIN] Acc: 16.250
+[TEST] Acc: 21.400
+Epoch: 15
+batch idx 325 hidden train
+9641 torch.Size([50000]) tensor(170.5914, device='cuda:0')
+[TRAIN] Acc: 20.000
+[TEST] Acc: 23.350
+Epoch: 16
+batch idx 70 hidden train
+10616 torch.Size([50000]) tensor(146.3133, device='cuda:0')
+[TRAIN] Acc: 23.750
+[TEST] Acc: 25.070
+Epoch: 17
+batch idx 205 hidden train
+11444 torch.Size([50000]) tensor(156.4968, device='cuda:0')
+[TRAIN] Acc: 33.750
+[TEST] Acc: 29.020
+Epoch: 18
+batch idx 334 hidden train
+12402 torch.Size([50000]) tensor(153.7306, device='cuda:0')
+[TRAIN] Acc: 33.750
+[TEST] Acc: 27.790
+Epoch: 19
+batch idx 287 hidden train
+12907 torch.Size([50000]) tensor(167.5110, device='cuda:0')
+[TRAIN] Acc: 26.250
+[TEST] Acc: 29.890
+Epoch: 20
+batch idx 262 hidden train
+13598 torch.Size([50000]) tensor(175.8913, device='cuda:0')
+[TRAIN] Acc: 31.250
+[TEST] Acc: 31.620
+Epoch: 21
+batch idx 62 hidden train
+14072 torch.Size([50000]) tensor(182.2126, device='cuda:0')
+[TRAIN] Acc: 28.750
+[TEST] Acc: 33.220
+Epoch: 22
+batch idx 186 hidden train
+14814 torch.Size([50000]) tensor(184.6880, device='cuda:0')
+[TRAIN] Acc: 45.000
+[TEST] Acc: 34.980
+Epoch: 23
+batch idx 369 hidden train
+15532 torch.Size([50000]) tensor(197.7316, device='cuda:0')
+[TRAIN] Acc: 31.250
+[TEST] Acc: 35.310
+Epoch: 24
+batch idx 140 hidden train
+15966 torch.Size([50000]) tensor(197.3855, device='cuda:0')
+[TRAIN] Acc: 41.250
+[TEST] Acc: 38.700
+Epoch: 25
+batch idx 346 hidden train
+16424 torch.Size([50000]) tensor(219.8876, device='cuda:0')
+[TRAIN] Acc: 32.500
+[TEST] Acc: 37.980
+Epoch: 26
+batch idx 359 hidden train
+17377 torch.Size([50000]) tensor(215.0310, device='cuda:0')
+[TRAIN] Acc: 35.000
+[TEST] Acc: 42.300
+Epoch: 27
+batch idx 41 hidden train
+18132 torch.Size([50000]) tensor(234.3887, device='cuda:0')
+[TRAIN] Acc: 41.250
+[TEST] Acc: 45.260
+Epoch: 28
+batch idx 201 hidden train
+19251 torch.Size([50000]) tensor(211.3678, device='cuda:0')
+[TRAIN] Acc: 53.750
+[TEST] Acc: 45.190
+Epoch: 29
+batch idx 47 hidden train
+19871 torch.Size([50000]) tensor(206.9942, device='cuda:0')
+[TRAIN] Acc: 55.000
+[TEST] Acc: 47.290
+Epoch: 30
+batch idx 95 hidden train
+20979 torch.Size([50000]) tensor(219.3853, device='cuda:0')
+[TRAIN] Acc: 53.750
+[TEST] Acc: 47.850
+Epoch: 31
+batch idx 70 hidden train
+21518 torch.Size([50000]) tensor(218.7823, device='cuda:0')
+[TRAIN] Acc: 53.750
+[TEST] Acc: 51.880
+Epoch: 32
+batch idx 206 hidden train
+21987 torch.Size([50000]) tensor(217.0843, device='cuda:0')
+[TRAIN] Acc: 57.500
+[TEST] Acc: 55.330
+Epoch: 33
+batch idx 112 hidden train
+23170 torch.Size([50000]) tensor(237.8892, device='cuda:0')
+[TRAIN] Acc: 55.000
+[TEST] Acc: 51.710
+Epoch: 34
+batch idx 19 hidden train
+23481 torch.Size([50000]) tensor(250.4652, device='cuda:0')
+[TRAIN] Acc: 62.500
+[TEST] Acc: 57.660
+Epoch: 35
+batch idx 295 hidden train
+23462 torch.Size([50000]) tensor(237.9380, device='cuda:0')
+[TRAIN] Acc: 63.750
+[TEST] Acc: 58.940
+Epoch: 36
+batch idx 276 hidden train
+23753 torch.Size([50000]) tensor(245.1383, device='cuda:0')
+[TRAIN] Acc: 52.500
+[TEST] Acc: 60.720
+Epoch: 37
+batch idx 160 hidden train
+24717 torch.Size([50000]) tensor(254.6328, device='cuda:0')
+[TRAIN] Acc: 63.750
+[TEST] Acc: 59.170
+Epoch: 38
+batch idx 250 hidden train
+25080 torch.Size([50000]) tensor(260.3769, device='cuda:0')
+[TRAIN] Acc: 75.000
+[TEST] Acc: 61.790
+Epoch: 39
+batch idx 202 hidden train
+24892 torch.Size([50000]) tensor(255.1861, device='cuda:0')
+[TRAIN] Acc: 77.500
+[TEST] Acc: 60.610
+Epoch: 40
+batch idx 126 hidden train
+25444 torch.Size([50000]) tensor(255.4922, device='cuda:0')
+[TRAIN] Acc: 61.250
+[TEST] Acc: 59.900
+Epoch: 41
+batch idx 316 hidden train
+26385 torch.Size([50000]) tensor(272.5811, device='cuda:0')
+[TRAIN] Acc: 57.500
+[TEST] Acc: 59.890
+Epoch: 42
+batch idx 219 hidden train
+25649 torch.Size([50000]) tensor(278.8796, device='cuda:0')
+[TRAIN] Acc: 68.750
+[TEST] Acc: 65.180
+Epoch: 43
+batch idx 113 hidden train
+27400 torch.Size([50000]) tensor(266.2763, device='cuda:0')
+[TRAIN] Acc: 63.750
+[TEST] Acc: 61.250
+Epoch: 44
+batch idx 320 hidden train
+26464 torch.Size([50000]) tensor(271.5470, device='cuda:0')
+[TRAIN] Acc: 65.000
+[TEST] Acc: 65.300
+Epoch: 45
+batch idx 132 hidden train
+27986 torch.Size([50000]) tensor(286.8203, device='cuda:0')
+[TRAIN] Acc: 77.500
+[TEST] Acc: 63.060
+Epoch: 46
+batch idx 22 hidden train
+27442 torch.Size([50000]) tensor(270.1942, device='cuda:0')
+[TRAIN] Acc: 75.000
+[TEST] Acc: 66.830
+Epoch: 47
+batch idx 6 hidden train
+28126 torch.Size([50000]) tensor(276.0804, device='cuda:0')
+[TRAIN] Acc: 71.250
+[TEST] Acc: 70.350
+Epoch: 48
+batch idx 1 hidden train
+28742 torch.Size([50000]) tensor(284.8632, device='cuda:0')
+[TRAIN] Acc: 70.000
+[TEST] Acc: 66.170
+Epoch: 49
+batch idx 144 hidden train
+28482 torch.Size([50000]) tensor(277.8991, device='cuda:0')
+[TRAIN] Acc: 70.000
+[TEST] Acc: 64.430
+Epoch: 50
+batch idx 280 hidden train
+29098 torch.Size([50000]) tensor(286.1641, device='cuda:0')
+[TRAIN] Acc: 67.500
+[TEST] Acc: 72.340
+Epoch: 51
+batch idx 172 hidden train
+29299 torch.Size([50000]) tensor(290.3055, device='cuda:0')
+[TRAIN] Acc: 67.500
+[TEST] Acc: 69.620
+Epoch: 52
+batch idx 315 hidden train
+28721 torch.Size([50000]) tensor(283.2478, device='cuda:0')
+[TRAIN] Acc: 77.500
+[TEST] Acc: 71.410
+Epoch: 53
+batch idx 117 hidden train
+29866 torch.Size([50000]) tensor(291.7249, device='cuda:0')
+[TRAIN] Acc: 76.250
+[TEST] Acc: 67.770
+Epoch: 54
+batch idx 209 hidden train
+29398 torch.Size([50000]) tensor(292.7085, device='cuda:0')
+[TRAIN] Acc: 65.000
+[TEST] Acc: 71.760
+Epoch: 55
+batch idx 60 hidden train
+29517 torch.Size([50000]) tensor(289.9038, device='cuda:0')
+[TRAIN] Acc: 68.750
+[TEST] Acc: 74.990
+Epoch: 56
+batch idx 154 hidden train
+29971 torch.Size([50000]) tensor(294.0790, device='cuda:0')
+[TRAIN] Acc: 81.250
+[TEST] Acc: 70.110
+Epoch: 57
+batch idx 13 hidden train
+29771 torch.Size([50000]) tensor(289.5782, device='cuda:0')
+[TRAIN] Acc: 70.000
+[TEST] Acc: 72.400
+Epoch: 58
+batch idx 127 hidden train
+30182 torch.Size([50000]) tensor(301.2581, device='cuda:0')
+[TRAIN] Acc: 76.250
+[TEST] Acc: 73.040
+Epoch: 59
+batch idx 21 hidden train
+30366 torch.Size([50000]) tensor(293.9090, device='cuda:0')
+[TRAIN] Acc: 77.500
+[TEST] Acc: 75.140
+Epoch: 60
+batch idx 76 hidden train
+30328 torch.Size([50000]) tensor(299.8433, device='cuda:0')
+[TRAIN] Acc: 80.000
+[TEST] Acc: 69.490
+Epoch: 61
+batch idx 360 hidden train
+30686 torch.Size([50000]) tensor(298.5525, device='cuda:0')
+[TRAIN] Acc: 75.000
+[TEST] Acc: 75.760
+0.03,0.3305
+Epoch: 62
+batch idx 134 hidden train
+31195 torch.Size([50000]) tensor(317.3971, device='cuda:0')
+[TRAIN] Acc: 73.750
+[TEST] Acc: 70.630
+0.03,0.3302
+Epoch: 63
+batch idx 285 hidden train
+30345 torch.Size([50000]) tensor(305.4117, device='cuda:0')
+[TRAIN] Acc: 71.250
+[TEST] Acc: 70.050
+0.03,0.3368
+Epoch: 64
+batch idx 158 hidden train
+31643 torch.Size([50000]) tensor(319.8969, device='cuda:0')
+[TRAIN] Acc: 73.750
+[TEST] Acc: 73.940
+0.03,0.3566
+Epoch: 65
+batch idx 244 hidden train
+30170 torch.Size([50000]) tensor(308.9100, device='cuda:0')
+[TRAIN] Acc: 81.250
+[TEST] Acc: 73.850
+0.03,0.3181
+Epoch: 66
+batch idx 250 hidden train
+30595 torch.Size([50000]) tensor(306.7081, device='cuda:0')
+[TRAIN] Acc: 72.500
+[TEST] Acc: 72.900
+0.03,0.2949
+Epoch: 67
+batch idx 185 hidden train
+31425 torch.Size([50000]) tensor(310.5628, device='cuda:0')
+[TRAIN] Acc: 82.500
+[TEST] Acc: 70.010
+0.03,0.3009
+Epoch: 68
+batch idx 155 hidden train
+31063 torch.Size([50000]) tensor(308.6371, device='cuda:0')
+[TRAIN] Acc: 80.000
+[TEST] Acc: 72.500
+0.03,0.3051
+Epoch: 69
+batch idx 33 hidden train
+30998 torch.Size([50000]) tensor(309.2944, device='cuda:0')
+[TRAIN] Acc: 81.250
+[TEST] Acc: 73.780
+0.03,0.3126
+Epoch: 70
+batch idx 66 hidden train
+31403 torch.Size([50000]) tensor(315.8980, device='cuda:0')
+[TRAIN] Acc: 81.250
+[TEST] Acc: 76.360
+0.03,0.3456
+Epoch: 71
+batch idx 194 hidden train
+30996 torch.Size([50000]) tensor(321.0320, device='cuda:0')
+[TRAIN] Acc: 85.000
+[TEST] Acc: 74.540
+0.03,0.2929
+Epoch: 72
+batch idx 13 hidden train
+32332 torch.Size([50000]) tensor(329.6434, device='cuda:0')
+[TRAIN] Acc: 78.750
+[TEST] Acc: 77.480
+0.03,0.3264
+Epoch: 73
+batch idx 312 hidden train
+32194 torch.Size([50000]) tensor(343.3186, device='cuda:0')
+[TRAIN] Acc: 80.000
+[TEST] Acc: 74.620
+0.03,0.317
+Epoch: 74
+batch idx 217 hidden train
+31252 torch.Size([50000]) tensor(330.7762, device='cuda:0')
+[TRAIN] Acc: 76.250
+[TEST] Acc: 73.010
+0.03,0.3235
+Epoch: 75
+batch idx 79 hidden train
+31912 torch.Size([50000]) tensor(350.7746, device='cuda:0')
+[TRAIN] Acc: 78.750
+[TEST] Acc: 79.500
+0.03,0.3488
+Epoch: 76
+batch idx 40 hidden train
+31598 torch.Size([50000]) tensor(354.7896, device='cuda:0')
+[TRAIN] Acc: 81.250
+[TEST] Acc: 75.680
+0.03,0.2945
+Epoch: 77
+batch idx 385 hidden train
+31837 torch.Size([50000]) tensor(338.1415, device='cuda:0')
+[TRAIN] Acc: 67.500
+[TEST] Acc: 73.590
+0.03,0.2837
+Epoch: 78
+batch idx 216 hidden train
+32300 torch.Size([50000]) tensor(341.5958, device='cuda:0')
+[TRAIN] Acc: 86.250
+[TEST] Acc: 78.920
+0.03,0.3368
+Epoch: 79
+batch idx 62 hidden train
+31843 torch.Size([50000]) tensor(335.9172, device='cuda:0')
+[TRAIN] Acc: 72.500
+[TEST] Acc: 74.480
+0.03,0.3345
+Epoch: 80
+batch idx 177 hidden train
+37865 torch.Size([50000]) tensor(395.9766, device='cuda:0')
+[TRAIN] Acc: 80.000
+[TEST] Acc: 82.520
+0.03,0.4284
+Epoch: 81
+batch idx 105 hidden train
+38188 torch.Size([50000]) tensor(451.4947, device='cuda:0')
+[TRAIN] Acc: 82.500
+[TEST] Acc: 82.920
+0.03,0.4779
+Epoch: 82
+batch idx 73 hidden train
+37801 torch.Size([50000]) tensor(514.4842, device='cuda:0')
+[TRAIN] Acc: 82.500
+[TEST] Acc: 82.550
+0.03,0.502
+Epoch: 83
+batch idx 68 hidden train
+37175 torch.Size([50000]) tensor(557.9650, device='cuda:0')
+[TRAIN] Acc: 78.750
+[TEST] Acc: 81.670
+0.03,0.5017
+Epoch: 84
+batch idx 5 hidden train
+36783 torch.Size([50000]) tensor(585.6865, device='cuda:0')
+[TRAIN] Acc: 88.750
+[TEST] Acc: 82.260
+0.03,0.5073
+Epoch: 85
+batch idx 275 hidden train
+36728 torch.Size([50000]) tensor(623.1296, device='cuda:0')
+[TRAIN] Acc: 80.000
+[TEST] Acc: 81.950
+0.03,0.5314
+Epoch: 86
+batch idx 273 hidden train
+36288 torch.Size([50000]) tensor(625.9539, device='cuda:0')
+[TRAIN] Acc: 91.250
+[TEST] Acc: 81.340
+0.03,0.5096
+Epoch: 87
+batch idx 281 hidden train
+36403 torch.Size([50000]) tensor(649.3337, device='cuda:0')
+[TRAIN] Acc: 80.000
+[TEST] Acc: 81.300
+0.03,0.5219
+Epoch: 88
+batch idx 256 hidden train
+36430 torch.Size([50000]) tensor(668.0950, device='cuda:0')
+[TRAIN] Acc: 82.500
+[TEST] Acc: 80.870
+0.03,0.5539
+Epoch: 89
+batch idx 229 hidden train
+36594 torch.Size([50000]) tensor(659.9007, device='cuda:0')
+[TRAIN] Acc: 85.000
+[TEST] Acc: 81.500
+0.03,0.536
+Epoch: 90
+batch idx 237 hidden train
+36435 torch.Size([50000]) tensor(664.6831, device='cuda:0')
+[TRAIN] Acc: 83.750
+[TEST] Acc: 81.020
+0.03,0.5236
+Epoch: 91
+batch idx 324 hidden train
+36728 torch.Size([50000]) tensor(666.9664, device='cuda:0')
+[TRAIN] Acc: 76.250
+[TEST] Acc: 80.770
+0.03,0.5223
+Epoch: 92
+batch idx 383 hidden train
+36915 torch.Size([50000]) tensor(667.4924, device='cuda:0')
+[TRAIN] Acc: 82.500
+[TEST] Acc: 81.240
+0.03,0.5329
+Epoch: 93
+batch idx 9 hidden train
+36915 torch.Size([50000]) tensor(666.9854, device='cuda:0')
+[TRAIN] Acc: 77.500
+[TEST] Acc: 81.350
+0.03,0.5386
+Epoch: 94
+batch idx 141 hidden train
+36988 torch.Size([50000]) tensor(665.2216, device='cuda:0')
+[TRAIN] Acc: 80.000
+[TEST] Acc: 81.430
+0.03,0.5434
+Epoch: 95
+batch idx 237 hidden train
+37206 torch.Size([50000]) tensor(663.0030, device='cuda:0')
+[TRAIN] Acc: 85.000
+[TEST] Acc: 81.460
+0.03,0.5153
+Epoch: 96
+batch idx 314 hidden train
+37153 torch.Size([50000]) tensor(679.1636, device='cuda:0')
+[TRAIN] Acc: 85.000
+[TEST] Acc: 80.460
+0.03,0.5384
+Epoch: 97
+batch idx 188 hidden train
+37299 torch.Size([50000]) tensor(670.0183, device='cuda:0')
+[TRAIN] Acc: 86.250
+[TEST] Acc: 82.330
+0.03,0.5455
+Epoch: 98
+batch idx 123 hidden train
+37452 torch.Size([50000]) tensor(677.3828, device='cuda:0')
+[TRAIN] Acc: 82.500
+[TEST] Acc: 81.620
+0.03,0.5513
+Epoch: 99
+batch idx 214 hidden train
+36863 torch.Size([50000]) tensor(664.6016, device='cuda:0')
+[TRAIN] Acc: 82.500
+[TEST] Acc: 81.730
+0.03,0.5396
+Epoch: 100
+batch idx 282 hidden train
+37150 torch.Size([50000]) tensor(653.0637, device='cuda:0')
+[TRAIN] Acc: 88.750
+[TEST] Acc: 81.730
+0.03,0.5214
+Epoch: 101
+batch idx 319 hidden train
+37312 torch.Size([50000]) tensor(651.0709, device='cuda:0')
+[TRAIN] Acc: 78.750
+[TEST] Acc: 81.540
+0.03,0.5091
+Epoch: 102
+batch idx 339 hidden train
+37491 torch.Size([50000]) tensor(657.0696, device='cuda:0')
+[TRAIN] Acc: 85.000
+[TEST] Acc: 81.390
+0.03,0.5328
+Epoch: 103
+batch idx 383 hidden train
+37095 torch.Size([50000]) tensor(660.8275, device='cuda:0')
+[TRAIN] Acc: 90.000
+[TEST] Acc: 81.480
+0.03,0.5381
+Epoch: 104
+batch idx 346 hidden train
+37507 torch.Size([50000]) tensor(662.5380, device='cuda:0')
+[TRAIN] Acc: 85.000
+[TEST] Acc: 81.470
+0.03,0.5154
+Epoch: 105
+batch idx 278 hidden train
+37516 torch.Size([50000]) tensor(651.7367, device='cuda:0')
+[TRAIN] Acc: 83.750
+[TEST] Acc: 82.040
+0.03,0.5344
+Epoch: 106
+batch idx 131 hidden train
+37744 torch.Size([50000]) tensor(648.2457, device='cuda:0')
+[TRAIN] Acc: 83.750
+[TEST] Acc: 81.700
+0.03,0.5284
+Epoch: 107
+batch idx 205 hidden train
+37511 torch.Size([50000]) tensor(650.9847, device='cuda:0')
+[TRAIN] Acc: 88.750
+[TEST] Acc: 82.350
+0.03,0.5235
+Epoch: 108
+batch idx 266 hidden train
+37374 torch.Size([50000]) tensor(646.2081, device='cuda:0')
+[TRAIN] Acc: 87.500
+[TEST] Acc: 81.720
+0.03,0.5057
+Epoch: 109
+batch idx 115 hidden train
+37269 torch.Size([50000]) tensor(640.6824, device='cuda:0')
+[TRAIN] Acc: 91.250
+[TEST] Acc: 81.900
+0.03,0.5552
+Epoch: 110
+batch idx 350 hidden train
+37453 torch.Size([50000]) tensor(636.3975, device='cuda:0')
+[TRAIN] Acc: 80.000
+[TEST] Acc: 81.840
+0.03,0.504
+Epoch: 111
+batch idx 338 hidden train
+37317 torch.Size([50000]) tensor(637.7163, device='cuda:0')
+[TRAIN] Acc: 90.000
+[TEST] Acc: 83.080
+0.03,0.5579
+Epoch: 112
+batch idx 382 hidden train
+38019 torch.Size([50000]) tensor(667.4516, device='cuda:0')
+[TRAIN] Acc: 90.000
+[TEST] Acc: 82.390
+0.03,0.5623
+Epoch: 113
+batch idx 6 hidden train
+37786 torch.Size([50000]) tensor(647.9578, device='cuda:0')
+[TRAIN] Acc: 90.000
+[TEST] Acc: 82.020
+0.03,0.5314
+Epoch: 114
+batch idx 364 hidden train
+37867 torch.Size([50000]) tensor(665.1747, device='cuda:0')
+[TRAIN] Acc: 80.000
+[TEST] Acc: 82.520
+0.03,0.548
+Epoch: 115
+batch idx 349 hidden train
+37602 torch.Size([50000]) tensor(655.2816, device='cuda:0')
+[TRAIN] Acc: 85.000
+[TEST] Acc: 81.920
+0.03,0.55
+Epoch: 116
+batch idx 65 hidden train
+37921 torch.Size([50000]) tensor(648.7361, device='cuda:0')
+[TRAIN] Acc: 87.500
+[TEST] Acc: 81.000
+0.03,0.5265
+Epoch: 117
+batch idx 297 hidden train
+37388 torch.Size([50000]) tensor(643.2524, device='cuda:0')
+[TRAIN] Acc: 86.250
+[TEST] Acc: 81.980
+0.03,0.5235
+Epoch: 118
+batch idx 376 hidden train
+37894 torch.Size([50000]) tensor(671.0552, device='cuda:0')
+[TRAIN] Acc: 82.500
+[TEST] Acc: 83.000
+0.03,0.5524
+Epoch: 119
+batch idx 25 hidden train
+37521 torch.Size([50000]) tensor(651.7547, device='cuda:0')
+[TRAIN] Acc: 78.750
+[TEST] Acc: 82.320
+0.03,0.5228
+Epoch: 120
+batch idx 96 hidden train
+37857 torch.Size([50000]) tensor(653.9780, device='cuda:0')
+[TRAIN] Acc: 82.500
+[TEST] Acc: 81.940
+0.03,0.5551
+Epoch: 121
+batch idx 158 hidden train
+37602 torch.Size([50000]) tensor(654.2676, device='cuda:0')
+[TRAIN] Acc: 80.000
+[TEST] Acc: 81.640
+0.03,0.5205
+Epoch: 122
+batch idx 48 hidden train
+37943 torch.Size([50000]) tensor(656.2645, device='cuda:0')
+[TRAIN] Acc: 83.750
+[TEST] Acc: 82.610
+0.03,0.5381
+Epoch: 123
+batch idx 316 hidden train
+37993 torch.Size([50000]) tensor(651.3414, device='cuda:0')
+[TRAIN] Acc: 86.250
+[TEST] Acc: 81.930
+0.03,0.532
+Epoch: 124
+batch idx 202 hidden train
+37545 torch.Size([50000]) tensor(644.1084, device='cuda:0')
+[TRAIN] Acc: 87.500
+[TEST] Acc: 83.090
+0.03,0.5237
+Epoch: 125
+batch idx 213 hidden train
+37949 torch.Size([50000]) tensor(642.4586, device='cuda:0')
+[TRAIN] Acc: 77.500
+[TEST] Acc: 82.710
+0.03,0.5509
+Epoch: 126
+batch idx 189 hidden train
+38120 torch.Size([50000]) tensor(642.1873, device='cuda:0')
+[TRAIN] Acc: 77.500
+[TEST] Acc: 82.400
+0.03,0.523
+Epoch: 127
+batch idx 50 hidden train
+37902 torch.Size([50000]) tensor(654.2075, device='cuda:0')
+[TRAIN] Acc: 86.250
+[TEST] Acc: 83.070
+0.03,0.5364
+Epoch: 128
+batch idx 366 hidden train
+38052 torch.Size([50000]) tensor(645.1129, device='cuda:0')
+[TRAIN] Acc: 85.000
+[TEST] Acc: 82.240
+0.03,0.5256
+Epoch: 129
+batch idx 368 hidden train
+37896 torch.Size([50000]) tensor(635.1075, device='cuda:0')
+[TRAIN] Acc: 81.250
+[TEST] Acc: 81.710
+0.03,0.5062
+Epoch: 130
+batch idx 67 hidden train
+38204 torch.Size([50000]) tensor(647.1866, device='cuda:0')
+[TRAIN] Acc: 82.500
+[TEST] Acc: 82.340
+0.03,0.5068
+Epoch: 131
+batch idx 355 hidden train
+37835 torch.Size([50000]) tensor(645.1768, device='cuda:0')
+[TRAIN] Acc: 90.000
+[TEST] Acc: 83.150
+0.03,0.5642
+Epoch: 132
+batch idx 265 hidden train
+37704 torch.Size([50000]) tensor(647.3311, device='cuda:0')
+[TRAIN] Acc: 88.750
+[TEST] Acc: 83.060
+0.03,0.5525
+Epoch: 133
+batch idx 222 hidden train
+38366 torch.Size([50000]) tensor(640.6501, device='cuda:0')
+[TRAIN] Acc: 91.250
+[TEST] Acc: 82.880
+0.03,0.5597
+Epoch: 134
+batch idx 92 hidden train
+37953 torch.Size([50000]) tensor(645.5248, device='cuda:0')
+[TRAIN] Acc: 85.000
+[TEST] Acc: 81.460
+0.03,0.5037
+Epoch: 135
+batch idx 139 hidden train
+38089 torch.Size([50000]) tensor(635.1934, device='cuda:0')
+[TRAIN] Acc: 92.500
+[TEST] Acc: 82.860
+0.03,0.5711
+Epoch: 136
+batch idx 37 hidden train
+38041 torch.Size([50000]) tensor(640.3673, device='cuda:0')
+[TRAIN] Acc: 91.250
+[TEST] Acc: 82.520
+0.03,0.5252
+Epoch: 137
+batch idx 73 hidden train
+38018 torch.Size([50000]) tensor(640.8884, device='cuda:0')
+[TRAIN] Acc: 85.000
+[TEST] Acc: 82.850
+0.03,0.5276
+Epoch: 138
+batch idx 259 hidden train
+38281 torch.Size([50000]) tensor(648.0189, device='cuda:0')
+[TRAIN] Acc: 91.250
+[TEST] Acc: 83.250
+0.03,0.5118
+Epoch: 139
+batch idx 181 hidden train
+38234 torch.Size([50000]) tensor(640.1720, device='cuda:0')
+[TRAIN] Acc: 85.000
+[TEST] Acc: 80.930
+0.03,0.5273
+Epoch: 140
+batch idx 127 hidden train
+39369 torch.Size([50000]) tensor(664.0277, device='cuda:0')
+[TRAIN] Acc: 80.000
+[TEST] Acc: 83.250
+0.03,0.5739
+Epoch: 141
+batch idx 54 hidden train
+40216 torch.Size([50000]) tensor(692.1774, device='cuda:0')
+[TRAIN] Acc: 88.750
+[TEST] Acc: 83.420
+0.03,0.5924
+Epoch: 142
+batch idx 25 hidden train
+40018 torch.Size([50000]) tensor(726.4043, device='cuda:0')
+[TRAIN] Acc: 83.750
+[TEST] Acc: 83.720
+0.03,0.6073
+Epoch: 143
+batch idx 247 hidden train
+40064 torch.Size([50000]) tensor(755.5367, device='cuda:0')
+[TRAIN] Acc: 86.250
+[TEST] Acc: 83.900
+0.03,0.6163
+Epoch: 144
+batch idx 64 hidden train
+39910 torch.Size([50000]) tensor(778.2310, device='cuda:0')
+[TRAIN] Acc: 87.500
+[TEST] Acc: 84.000
+0.03,0.6094
+Epoch: 145
+batch idx 14 hidden train
+39862 torch.Size([50000]) tensor(766.8890, device='cuda:0')
+[TRAIN] Acc: 93.750
+[TEST] Acc: 83.880
+0.03,0.6268
+Epoch: 146
+batch idx 210 hidden train
+39984 torch.Size([50000]) tensor(794.9475, device='cuda:0')
+[TRAIN] Acc: 88.750
+[TEST] Acc: 84.300
+0.03,0.6179
+Epoch: 147
+batch idx 41 hidden train
+39840 torch.Size([50000]) tensor(794.1873, device='cuda:0')
+[TRAIN] Acc: 82.500
+[TEST] Acc: 84.030
+0.03,0.62
+Epoch: 148
+batch idx 364 hidden train
+40069 torch.Size([50000]) tensor(800.8307, device='cuda:0')
+[TRAIN] Acc: 87.500
+[TEST] Acc: 84.300
+0.03,0.6346
+Epoch: 149
+batch idx 58 hidden train
+40015 torch.Size([50000]) tensor(813.6661, device='cuda:0')
+[TRAIN] Acc: 93.750
+[TEST] Acc: 84.000
+0.03,0.6415
+Epoch: 150
+batch idx 162 hidden train
+40152 torch.Size([50000]) tensor(819.7955, device='cuda:0')
+[TRAIN] Acc: 91.250
+[TEST] Acc: 83.850
+0.03,0.6268
+Epoch: 151
+batch idx 163 hidden train
+40149 torch.Size([50000]) tensor(812.8316, device='cuda:0')
+[TRAIN] Acc: 90.000
+[TEST] Acc: 83.700
+0.03,0.6301
+Epoch: 152
+batch idx 97 hidden train
+39953 torch.Size([50000]) tensor(811.3344, device='cuda:0')
+[TRAIN] Acc: 80.000
+[TEST] Acc: 84.070
+0.03,0.6305
+Epoch: 153
+batch idx 250 hidden train
+40188 torch.Size([50000]) tensor(809.2924, device='cuda:0')
+[TRAIN] Acc: 93.750
+[TEST] Acc: 83.980
+0.03,0.6482
+Epoch: 154
+batch idx 100 hidden train
+40586 torch.Size([50000]) tensor(821.8044, device='cuda:0')
+[TRAIN] Acc: 90.000
+[TEST] Acc: 84.020
+0.03,0.6395
+Epoch: 155
+batch idx 283 hidden train
+40381 torch.Size([50000]) tensor(823.8717, device='cuda:0')
+[TRAIN] Acc: 91.250
+[TEST] Acc: 83.990
+0.03,0.6497
+Epoch: 156
+batch idx 179 hidden train
+40173 torch.Size([50000]) tensor(822.1621, device='cuda:0')
+[TRAIN] Acc: 81.250
+[TEST] Acc: 83.900
+0.03,0.6412
+Epoch: 157
+batch idx 245 hidden train
+40571 torch.Size([50000]) tensor(822.1448, device='cuda:0')
+[TRAIN] Acc: 92.500
+[TEST] Acc: 84.330
+0.03,0.6361
+Epoch: 158
+batch idx 108 hidden train
+40397 torch.Size([50000]) tensor(848.0209, device='cuda:0')
+[TRAIN] Acc: 88.750
+[TEST] Acc: 84.140
+0.03,0.6439
+Epoch: 159
+batch idx 198 hidden train
+40519 torch.Size([50000]) tensor(831.7943, device='cuda:0')
+[TRAIN] Acc: 87.500
+[TEST] Acc: 84.140
+0.03,0.6473
+Epoch: 160
+batch idx 342 hidden train
+40716 torch.Size([50000]) tensor(835.8120, device='cuda:0')
+[TRAIN] Acc: 90.000
+[TEST] Acc: 84.460
+0.03,0.6454
+Epoch: 161
+batch idx 89 hidden train
+40276 torch.Size([50000]) tensor(839.0454, device='cuda:0')
+[TRAIN] Acc: 88.750
+[TEST] Acc: 84.240
+0.03,0.6412
+Epoch: 162
+batch idx 318 hidden train
+40501 torch.Size([50000]) tensor(836.0348, device='cuda:0')
+[TRAIN] Acc: 87.500
+[TEST] Acc: 84.060
+0.03,0.6522
+Epoch: 163
+batch idx 144 hidden train
+40634 torch.Size([50000]) tensor(837.1536, device='cuda:0')
+[TRAIN] Acc: 92.500
+[TEST] Acc: 84.110
+0.03,0.6359
+Epoch: 164
+batch idx 294 hidden train
+40323 torch.Size([50000]) tensor(835.6093, device='cuda:0')
+[TRAIN] Acc: 87.500
+[TEST] Acc: 84.120
+0.03,0.6299
+Epoch: 165
+batch idx 48 hidden train
+40571 torch.Size([50000]) tensor(837.2140, device='cuda:0')
+[TRAIN] Acc: 96.250
+[TEST] Acc: 84.100
+0.03,0.6509
+Epoch: 166
+batch idx 315 hidden train
+40568 torch.Size([50000]) tensor(837.4255, device='cuda:0')
+[TRAIN] Acc: 82.500
+[TEST] Acc: 84.240
+0.03,0.6484
+Epoch: 167
+batch idx 330 hidden train
+40698 torch.Size([50000]) tensor(836.6476, device='cuda:0')
+[TRAIN] Acc: 86.250
+[TEST] Acc: 83.890
+0.03,0.6461
+Epoch: 168
+batch idx 337 hidden train
+40537 torch.Size([50000]) tensor(844.0880, device='cuda:0')
+[TRAIN] Acc: 90.000
+[TEST] Acc: 84.000
+0.03,0.6533
+Epoch: 169
+batch idx 68 hidden train
+40454 torch.Size([50000]) tensor(851.8640, device='cuda:0')
+[TRAIN] Acc: 90.000
+[TEST] Acc: 84.310
+0.03,0.6431
+Epoch: 170
+batch idx 126 hidden train
+40709 torch.Size([50000]) tensor(836.7478, device='cuda:0')
+[TRAIN] Acc: 86.250
+[TEST] Acc: 84.280
+0.03,0.641
+Epoch: 171
+batch idx 61 hidden train
+40723 torch.Size([50000]) tensor(847.8456, device='cuda:0')
+[TRAIN] Acc: 88.750
+[TEST] Acc: 84.390
+0.03,0.6542
+Epoch: 172
+batch idx 159 hidden train
+40706 torch.Size([50000]) tensor(838.5281, device='cuda:0')
+[TRAIN] Acc: 87.500
+[TEST] Acc: 84.270
+0.03,0.6512
+Epoch: 173
+batch idx 10 hidden train
+40747 torch.Size([50000]) tensor(839.3472, device='cuda:0')
+[TRAIN] Acc: 85.000
+[TEST] Acc: 84.370
+0.03,0.6492
+Epoch: 174
+batch idx 384 hidden train
+40710 torch.Size([50000]) tensor(844.4110, device='cuda:0')
+[TRAIN] Acc: 100.000
+[TEST] Acc: 84.200
+0.03,0.6576
+Epoch: 175
+batch idx 347 hidden train
+40555 torch.Size([50000]) tensor(845.2556, device='cuda:0')
+[TRAIN] Acc: 96.250
+[TEST] Acc: 84.080
+0.03,0.6534
+Epoch: 176
+batch idx 29 hidden train
+40741 torch.Size([50000]) tensor(855.5426, device='cuda:0')
+[TRAIN] Acc: 86.250
+[TEST] Acc: 84.090
+0.03,0.6539
+Epoch: 177
+batch idx 77 hidden train
+40947 torch.Size([50000]) tensor(845.2197, device='cuda:0')
+[TRAIN] Acc: 93.750
+[TEST] Acc: 84.630
+0.03,0.6399
+Epoch: 178
+batch idx 207 hidden train
+40694 torch.Size([50000]) tensor(853.7927, device='cuda:0')
+[TRAIN] Acc: 85.000
+[TEST] Acc: 84.380
+0.03,0.6584
+Epoch: 179
+batch idx 323 hidden train
+40591 torch.Size([50000]) tensor(841.3502, device='cuda:0')
+[TRAIN] Acc: 91.250
+[TEST] Acc: 84.210
+0.03,0.6343
+Epoch: 180
+batch idx 10 hidden train
+40790 torch.Size([50000]) tensor(852.7533, device='cuda:0')
+[TRAIN] Acc: 86.250
+[TEST] Acc: 84.230
+0.03,0.6499
+Epoch: 181
+batch idx 96 hidden train
+40895 torch.Size([50000]) tensor(859.0758, device='cuda:0')
+[TRAIN] Acc: 83.750
+[TEST] Acc: 84.190
+0.03,0.6569
+Epoch: 182
+batch idx 59 hidden train
+41071 torch.Size([50000]) tensor(852.8501, device='cuda:0')
+[TRAIN] Acc: 92.500
+[TEST] Acc: 84.310
+0.03,0.6575
+Epoch: 183
+batch idx 132 hidden train
+40978 torch.Size([50000]) tensor(864.6356, device='cuda:0')
+[TRAIN] Acc: 85.000
+[TEST] Acc: 84.270
+0.03,0.6512
+Epoch: 184
+batch idx 91 hidden train
+41092 torch.Size([50000]) tensor(872.1257, device='cuda:0')
+[TRAIN] Acc: 91.250
+[TEST] Acc: 84.200
+0.03,0.6531
+Epoch: 185
+batch idx 279 hidden train
+40938 torch.Size([50000]) tensor(862.7772, device='cuda:0')
+[TRAIN] Acc: 88.750
+[TEST] Acc: 84.390
+0.03,0.6557
+Epoch: 186
+batch idx 219 hidden train
+41000 torch.Size([50000]) tensor(871.0211, device='cuda:0')
+[TRAIN] Acc: 92.500
+[TEST] Acc: 84.310
+0.03,0.6409
+Epoch: 187
+batch idx 367 hidden train
+40982 torch.Size([50000]) tensor(867.7480, device='cuda:0')
+[TRAIN] Acc: 92.500
+[TEST] Acc: 84.300
+0.03,0.6617
+Epoch: 188
+batch idx 27 hidden train
+41027 torch.Size([50000]) tensor(870.4273, device='cuda:0')
+[TRAIN] Acc: 90.000
+[TEST] Acc: 84.480
+0.03,0.6554
+Epoch: 189
+batch idx 350 hidden train
+41101 torch.Size([50000]) tensor(870.9650, device='cuda:0')
+[TRAIN] Acc: 86.250
+[TEST] Acc: 84.520
+0.03,0.6582
+Epoch: 190
+batch idx 154 hidden train
+41038 torch.Size([50000]) tensor(882.9926, device='cuda:0')
+[TRAIN] Acc: 93.750
+[TEST] Acc: 84.500
+0.03,0.6668
+Epoch: 191
+batch idx 45 hidden train
+40980 torch.Size([50000]) tensor(876.1763, device='cuda:0')
+[TRAIN] Acc: 92.500
+[TEST] Acc: 84.540
+0.03,0.6606
+Epoch: 192
+batch idx 149 hidden train
+40946 torch.Size([50000]) tensor(867.5627, device='cuda:0')
+[TRAIN] Acc: 90.000
+[TEST] Acc: 84.420
+0.03,0.6662
+Epoch: 193
+batch idx 134 hidden train
+41001 torch.Size([50000]) tensor(883.0997, device='cuda:0')
+[TRAIN] Acc: 88.750
+[TEST] Acc: 84.440
+0.03,0.6513
+Epoch: 194
+batch idx 109 hidden train
+41033 torch.Size([50000]) tensor(872.9166, device='cuda:0')
+[TRAIN] Acc: 85.000
+[TEST] Acc: 84.430
+0.03,0.6695
+Epoch: 195
+batch idx 84 hidden train
+41136 torch.Size([50000]) tensor(868.8822, device='cuda:0')
+[TRAIN] Acc: 88.750
+[TEST] Acc: 84.470
+0.03,0.6606
+Epoch: 196
+batch idx 203 hidden train
+41083 torch.Size([50000]) tensor(874.6749, device='cuda:0')
+[TRAIN] Acc: 92.500
+[TEST] Acc: 84.450
+0.03,0.6587
+Epoch: 197
+batch idx 56 hidden train
+41074 torch.Size([50000]) tensor(893.1849, device='cuda:0')
+[TRAIN] Acc: 92.500
+[TEST] Acc: 84.400
+0.03,0.6662
+Epoch: 198
+batch idx 67 hidden train
+40996 torch.Size([50000]) tensor(879.4492, device='cuda:0')
+[TRAIN] Acc: 87.500
+[TEST] Acc: 84.340
+0.03,0.648
+Epoch: 199
+batch idx 286 hidden train
+41153 torch.Size([50000]) tensor(876.3926, device='cuda:0')
+[TRAIN] Acc: 92.500
+[TEST] Acc: 84.360
+0.03,0.6569

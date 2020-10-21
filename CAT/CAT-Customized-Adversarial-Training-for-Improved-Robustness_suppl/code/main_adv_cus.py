@@ -358,14 +358,14 @@ def hidden_mix_adv_train(inputs, targets, index, cw, mixup_alpha=1.0):
     :return: the correct and the total predictions
     """
     inputs, targets = inputs.cuda(), targets.cuda()
-    with torch.no_grad():
-        inputs = net.module.features(inputs).view(-1, 512)
-        # convert targets to one_hot
-        batch_size, n_class = targets.size(0), 10
-        targets = torch.zeros((batch_size, n_class)).cuda().scatter(1, targets.view(-1, 1), 1)
-        inputs, targets = mixup_data(inputs, targets, mixup_alpha)
-        inputs = inputs.cuda()
-        targets = targets.cuda()
+    #with torch.no_grad():
+    inputs = net.module.features(inputs).view(-1, 512)
+    # convert targets to one_hot
+    batch_size, n_class = targets.size(0), 10
+    targets = torch.zeros((batch_size, n_class)).cuda().scatter(1, targets.view(-1, 1), 1)
+    inputs, targets = mixup_data(inputs, targets, mixup_alpha)
+    inputs = inputs.cuda()
+    targets = targets.cuda()
     so_targets, one_hot = dirilabel(inputs, targets, eps[index], already_one_hot=True)
     adv_x = Linf_PGD_so_cw(inputs, targets, net.module.classifier, opt.steps, eps[index], one_hot, cw=cw,
                            our=True)
@@ -493,7 +493,7 @@ def our_experiment(count, train_perm, eps, cw, mixup_in_epoch, hidden_in_epoch, 
                 mixup_in_epoch=mixup_in_epoch, hidden_in_epoch=hidden_in_epoch)
 
 
-mixup_in_epoch = 1
+mixup_in_epoch = 0
 hidden_in_epoch = 1
 mixup_alpha = 1.0
 
