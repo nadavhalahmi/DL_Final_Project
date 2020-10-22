@@ -494,7 +494,7 @@ def our_experiment(count, train_perm, eps, cw, mixup_in_epoch, hidden_in_epoch, 
 
 
 mixup_in_epoch = 0
-hidden_in_epoch = 1
+hidden_in_epoch = 3
 mixup_alpha = 1.0
 
 print(f'running experiment with mixup_in_epoch={mixup_in_epoch}, '
