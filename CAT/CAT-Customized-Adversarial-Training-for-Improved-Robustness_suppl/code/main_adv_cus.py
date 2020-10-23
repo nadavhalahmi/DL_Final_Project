@@ -462,8 +462,10 @@ def test(epoch):
     if epoch > 60:
         acc = test_attack(True)
         if acc > best_acc_ce:
+            print("============ NEW BEST =============")
+            print("BEST:", acc)
             best_acc_ce = acc
-            model_out = opt.model_out + "best"
+            model_out = opt.model_out + "best" + f"{mixup_in_epoch}_mix_{hidden_in_epoch}_hidden_{mixup_alpha}_alpha"
             torch.save(net.state_dict(), model_out)
             # if acc> best_acc_ce:
     #     best_acc_ce = acc
