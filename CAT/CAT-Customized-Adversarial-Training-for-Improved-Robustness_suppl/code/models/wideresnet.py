@@ -81,8 +81,7 @@ class WideResNet(nn.Module):
             elif isinstance(m, nn.Linear):
                 m.bias.data.zero_()
 
-        self.features = nn.Sequential(*[self.conv1] + list(self.block1) + list(self.block2) + list(self.block3)
-                                       + [self.bn1] + [self.relu])  # TODO: CHECK how to add pool
+        self.features = nn.Sequential(*[self.conv1, self.block1, self.block2, self.block3, self.bn1, self.relu]) #TODO: CHECK how to add pool
         self.classifier = nn.Sequential(*[self.fc])
 
     def features_func(self, x):
@@ -108,7 +107,7 @@ class WideResNet(nn.Module):
         # out = out.view(-1, self.nChannels)
         # return self.fc(out), None
 
-        # return self.classifier(self.features(x))
+        #return self.classifier(self.features(x))
         out = self.features(x)
         out = F.avg_pool2d(out, 8)
         out = out.view(-1, self.nChannels)
