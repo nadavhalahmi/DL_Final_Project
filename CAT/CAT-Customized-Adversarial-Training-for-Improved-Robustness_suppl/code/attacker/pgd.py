@@ -328,6 +328,7 @@ def Linf_PGD_so_cw(x_nat, y_true, net, steps, eps, one_hot, imagenet=False, rand
         else:
             out = net(x_adv)
         if cw:
+            out = out[0]
             real = torch.max(out*one_hot -(1-one_hot)*100000, dim=1)[0]
             other = torch.max(torch.mul(out, (1-one_hot))-one_hot*10000, 1)[0]
             loss1 = torch.max(real - other+10, zero)
@@ -362,7 +363,8 @@ def Linf_PGD_so_cw(x_nat, y_true, net, steps, eps, one_hot, imagenet=False, rand
         else:
             x_adv.detach().copy_((diff + x_nat).clamp_(0, 1))
     net.zero_grad()
-    mask = (torch.max(net(x_adv),dim=1)[1] == torch.max(y_true,dim=1)[1])
+    print(y_true)
+    mask = (torch.max((net(x_adv)[0]),dim=1)[1] == torch.max(y_true,dim=1)[1])
     if mask is None:
         return x_in
     x_in.data[mask] = x_adv.data[mask]

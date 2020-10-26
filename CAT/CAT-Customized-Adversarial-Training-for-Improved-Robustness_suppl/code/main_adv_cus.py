@@ -321,6 +321,7 @@ def loss_and_num_corrects(inputs, targets, outputs, index, cw, already_one_hot=F
     total = 0
     zero = torch.tensor([0.0]).cuda()
     so_targets, one_hot = dirilabel(inputs, targets, eps[index], already_one_hot)
+    outputs = outputs[0]
     if cw:
         real = torch.max(outputs * one_hot - (1 - one_hot) * 100000, dim=1)[0]
         other = torch.max(torch.mul(outputs, (1 - one_hot)) - one_hot * 100000, 1)[0]
