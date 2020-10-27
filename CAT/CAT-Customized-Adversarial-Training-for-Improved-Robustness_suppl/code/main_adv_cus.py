@@ -100,7 +100,7 @@ if opt.data == 'cifar10':
     ])
     trainset = torchvision.datasets.CIFAR10(root=opt.root, train=True, download=True, transform=transform_train)
     if opt.train_sampler:
-        trainloader = torch.utils.data.DataLoader(trainset, batch_size=128,
+        trainloader = torch.utils.data.DataLoader(trainset, batch_size=10,  # TODO: change here to 128
                                                   shuffle=False, num_workers=2, pin_memory=True,
                                                   sampler=FixedRandomSampler(trainset))
     else:
@@ -110,7 +110,7 @@ if opt.data == 'cifar10':
     # trainloader = torch.utils.data.DataLoader(trainset, batch_size=128, shuffle=True, num_workers=2)
     # statloader = torch.utils.data.DataLoader(trainset, batch_size=500, shuffle=False, num_workers=2)
     testset = torchvision.datasets.CIFAR10(root=opt.root, train=False, download=True, transform=transform_test)
-    testloader = torch.utils.data.DataLoader(testset, batch_size=100, shuffle=False, num_workers=2)
+    testloader = torch.utils.data.DataLoader(testset, batch_size=10, shuffle=False, num_workers=2)     # TODO: change here back to 100
 elif opt.data == 'tiny_imagenet':
     nclass = 200
     img_width = 64
@@ -297,7 +297,7 @@ def train_soadp(epoch, perm, eps, cw=False, mixup_in_epoch=0, hidden_in_epoch=0,
     print('Epoch: %d' % epoch)
     net.train()
     train_loss = 0
-    batch_size = 128
+    batch_size = 10 # TODO: change here back to 128
     # the indices of the samples for producing adversarial examples
 
     hidden_index = list(random.sample(range(len(trainloader)), hidden_in_epoch))
@@ -501,7 +501,7 @@ def our_experiment(count, train_perm, eps, cw, mixup_in_epoch, hidden_in_epoch, 
 
 
 mixup_in_epoch = 0
-hidden_in_epoch = 3
+hidden_in_epoch = 0
 mixup_alpha = 1.0
 
 print(f'running experiment with mixup_in_epoch={mixup_in_epoch}, '
