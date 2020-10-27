@@ -110,7 +110,8 @@ if opt.data == 'cifar10':
     # trainloader = torch.utils.data.DataLoader(trainset, batch_size=128, shuffle=True, num_workers=2)
     # statloader = torch.utils.data.DataLoader(trainset, batch_size=500, shuffle=False, num_workers=2)
     testset = torchvision.datasets.CIFAR10(root=opt.root, train=False, download=True, transform=transform_test)
-    testloader = torch.utils.data.DataLoader(testset, batch_size=15, shuffle=False, num_workers=2)     # TODO: change here back to 100
+    testloader = torch.utils.data.DataLoader(testset, batch_size=15, shuffle=False,
+                                             num_workers=2)  # TODO: change here back to 100
 elif opt.data == 'tiny_imagenet':
     nclass = 200
     img_width = 64
@@ -297,7 +298,7 @@ def train_soadp(epoch, perm, eps, cw=False, mixup_in_epoch=0, hidden_in_epoch=0,
     print('Epoch: %d' % epoch)
     net.train()
     train_loss = 0
-    batch_size = 15 # TODO: change here back to 128
+    batch_size = 15  # TODO: change here back to 128
     # the indices of the samples for producing adversarial examples
 
     hidden_index = list(random.sample(range(len(trainloader)), hidden_in_epoch))
@@ -316,12 +317,13 @@ def train_soadp(epoch, perm, eps, cw=False, mixup_in_epoch=0, hidden_in_epoch=0,
     print(f'[TRAIN] Acc: {100. * correct / total:.3f}')
 
 
-def loss_and_num_corrects(inputs, targets, outputs, index, cw, already_one_hot=False):
+def loss_and_num_corrects(inputs, targets, outputs, index, cw, already_one_hot=False, our=False):
     correct = 0
     total = 0
     zero = torch.tensor([0.0]).cuda()
     so_targets, one_hot = dirilabel(inputs, targets, eps[index], already_one_hot)
-    outputs = outputs[0]
+    if not our:
+        outputs = outputs[0]
     if cw:
         real = torch.max(outputs * one_hot - (1 - one_hot) * 100000, dim=1)[0]
         other = torch.max(torch.mul(outputs, (1 - one_hot)) - one_hot * 100000, 1)[0]
@@ -359,7 +361,7 @@ def hidden_mix_adv_train(inputs, targets, index, cw, mixup_alpha=1.0):
     :return: the correct and the total predictions
     """
     inputs, targets = inputs.cuda(), targets.cuda()
-    #with torch.no_grad():
+    # with torch.no_grad():
     inputs = net.module.features(inputs)
     inputs = F.avg_pool2d(inputs, 8)
     inputs = inputs.view(-1, 640)
@@ -375,7 +377,7 @@ def hidden_mix_adv_train(inputs, targets, index, cw, mixup_alpha=1.0):
     optimizer.zero_grad()
     eps[index] = distance(adv_x, inputs)
     outputs = net.module.classifier(adv_x)
-    return loss_and_num_corrects(inputs, targets, outputs, index, cw, already_one_hot=True)
+    return loss_and_num_corrects(inputs, targets, outputs, index, cw, already_one_hot=True, our=True)
 
 
 def hidden_adv_train(inputs, targets, index, cw):
@@ -399,7 +401,7 @@ def hidden_adv_train(inputs, targets, index, cw):
     optimizer.zero_grad()
     eps[index] = distance(adv_x, inputs)
     outputs = net.module.classifier(adv_x)
-    return loss_and_num_corrects(inputs, targets, outputs, index, cw)
+    return loss_and_num_corrects(inputs, targets, outputs, index, cw, our=True)
 
 
 def noraml_adv_train(inputs, targets, index, cw):
@@ -417,7 +419,7 @@ def noraml_adv_train(inputs, targets, index, cw):
     optimizer.zero_grad()
     eps[index] = distance(adv_x, inputs)
     outputs = net(adv_x)
-    return loss_and_num_corrects(inputs, targets, outputs, index, cw)
+    return loss_and_num_corrects(inputs, targets, outputs, index, cw, our=False)
 
 
 def test_attack(cw):
