@@ -360,7 +360,7 @@ def hidden_mix_adv_train(inputs, targets, index, cw, mixup_alpha=1.0):
     """
     inputs, targets = inputs.cuda(), targets.cuda()
     #with torch.no_grad():
-    inputs = net.module.features(inputs).view(-1, 512)
+    inputs = net.module.features(inputs).view(-1, 640)
     # convert targets to one_hot
     batch_size, n_class = targets.size(0), 10
     targets = torch.zeros((batch_size, n_class)).cuda().scatter(1, targets.view(-1, 1), 1)
@@ -387,7 +387,7 @@ def hidden_adv_train(inputs, targets, index, cw):
     """
     inputs, targets = inputs.cuda(), targets.cuda()
     with torch.no_grad():
-        inputs = net.module.features(inputs).view(-1, 512)
+        inputs = net.module.features(inputs).view(-1, 640)
         inputs = inputs.cuda()
     so_targets, one_hot = dirilabel(inputs, targets, eps[index])
     adv_x = Linf_PGD_so_cw(inputs, so_targets, net.module.classifier, opt.steps, eps[index], one_hot, cw=cw,
