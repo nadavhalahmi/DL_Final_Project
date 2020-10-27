@@ -328,7 +328,9 @@ def Linf_PGD_so_cw(x_nat, y_true, net, steps, eps, one_hot, imagenet=False, rand
         else:
             out = net(x_adv)
         if cw:
-            out = out[0]
+            if not our:
+                out = out[0]
+            print(out)
             real = torch.max(out*one_hot -(1-one_hot)*100000, dim=1)[0]
             other = torch.max(torch.mul(out, (1-one_hot))-one_hot*10000, 1)[0]
             loss1 = torch.max(real - other+10, zero)
