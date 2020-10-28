@@ -432,8 +432,8 @@ def test_attack(cw):
     for it, (x, y) in enumerate(testloader):
         x, y = x.cuda(), y.cuda()
         x_adv = Linf_PGD(x, y, net, 5, eps, cw=cw)
-        # pred = torch.max(net(x_adv)[0], dim=1)[1] TODO: unnote this according to whatsapp group
-        pred = torch.max(net(x_adv), dim=1)[1]  # TODO: note this according to whatsapp group
+        pred = torch.max(net(x_adv)[0], dim=1)[1] TODO: unnote this according to whatsapp group
+        # pred = torch.max(net(x_adv), dim=1)[1]  # TODO: note this according to whatsapp group
         correct += torch.sum(pred.eq(y)).item()
         total += y.numel()
         batch += 1
@@ -457,7 +457,7 @@ def test(epoch):
             outputs = net(inputs)
             # loss = criterion(outputs, targets)
             # test_loss += loss.item()
-            _, predicted = outputs.max(1)
+            _, predicted = outputs[0].max(1)
             total += targets.size(0)
             correct += predicted.eq(targets).sum().item()
         print(f'[TEST] Acc: {100. * correct / total:.3f}')
