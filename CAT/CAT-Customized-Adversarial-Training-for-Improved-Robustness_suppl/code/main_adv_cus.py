@@ -462,15 +462,17 @@ def test(epoch):
     if epoch > 60:
         acc = test_attack(True)
         if acc > best_acc_ce:
+            print("============ NEW BEST =============")
+            print("BEST:", acc)
             best_acc_ce = acc
-            model_out = opt.model_out + "best"
+            model_out = opt.model_out + "best" + f"{mixup_in_epoch}_mix_{hidden_in_epoch}_hidden_{mixup_alpha}_alpha"
             torch.save(net.state_dict(), model_out)
             # if acc> best_acc_ce:
     #     best_acc_ce = acc
     #     model_out = opt.model_out + "best"
     #     torch.save(net.state_dict(), model_out)
     if epoch == 199:
-        model_out = opt.model_out + str(epoch)
+        model_out = opt.model_out + "best" + f"{mixup_in_epoch}_mix_{hidden_in_epoch}_hidden_{mixup_alpha}_alpha" + str(epoch)
         torch.save(net.state_dict(), model_out)
 
 
@@ -494,7 +496,7 @@ def our_experiment(count, train_perm, eps, cw, mixup_in_epoch, hidden_in_epoch, 
 
 
 mixup_in_epoch = 0
-hidden_in_epoch = 4
+hidden_in_epoch = 7
 mixup_alpha = 1.0
 
 print(f'running experiment with mixup_in_epoch={mixup_in_epoch}, '
